@@ -387,7 +387,7 @@ class Operator extends CI_Controller {
 		$this->session->set_flashdata('success', 'Surat keluar berhasil di hapus');
 		redirect($this->agent->referrer());
 	}
-	
+	/*
 
 	function disposisi()
 	{
@@ -398,19 +398,19 @@ class Operator extends CI_Controller {
 		$this->load->view('operator/disposisi');
 		$this->load->view('operator/footer');
 	}
+*/
 
 
-
-	/*
+	
 	function monitoring_disposisi(){
 		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
 		//$data['disposisi'] = $this->m->get_table('disposisi');
-		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/monitoring_disposisi');
-		$this->load->view('kasubag/footer'); 
+		$this->load->view('operator/header', $data);
+		$this->load->view('operator/monitoring_disposisi');
+		$this->load->view('operator/footer'); 
 	}
-	*/
+	/*
 	function detaildisposisi($id)
 	{
 		$data['title']   = "APS | Detail Disposisi Surat";
@@ -423,7 +423,7 @@ class Operator extends CI_Controller {
 		$this->load->view('operator/detail_disposisi');
 		$this->load->view('operator/footer');
 	}
-
+*/
 	function daftardisposisi()
 	{
 		$data['title']   = "APS | Disposisi Surat";
@@ -459,21 +459,23 @@ class Operator extends CI_Controller {
 		redirect($this->agent->referrer());	
 	}
 	
+*/
 	function detaildisposisi($id)
 	{
 		$data['title']   = "APS | Detail Disposisi Surat";
 		$data['list'] 	 = $this->m->get_where('disposisi',['id_disposisi'=>$id])->row();
-		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/detail_disposisi');
-		$this->load->view('kasubag/footer');
+		$this->load->view('operator/header', $data);
+		$this->load->view('operator/detail_disposisi');
+		$this->load->view('operator/footer');
 	}
-	*/
+
 	
 	function add_disposisi()
 	{
 		$this->m->insert('disposisi',[
 			'no_surat'	=>	$this->input->post('no_surat'),
 			'dari'	=>	$this->input->post('dari'),
+			'tgl_surat' => $this->input->post('tgl_surat'),
 			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
 			'perihal'	=>	$this->input->post('perihal'),
 			'sifat'	=>	$this->input->post('sifat'),
@@ -489,7 +491,7 @@ class Operator extends CI_Controller {
 		redirect($this->agent->referrer());
 	}
 	
-	function disposisii()
+	function disposisi()
 	{
 		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->m->get_table('disposisi');
@@ -497,7 +499,7 @@ class Operator extends CI_Controller {
 		$this->load->view('operator/tambah_disposisi');
 		$this->load->view('operator/footer');
 	}
-	/*
+	
 	function getsuratmasuk(){
 		$nomer_surat = $this->input->post('nomer');
 		$validasi_disposisi =  $this->db->query("SELECT * FROM disposisi WHERE no_surat = '$nomer_surat'")->num_rows();
@@ -510,10 +512,33 @@ class Operator extends CI_Controller {
 
 		echo json_encode($hasil);
 	}
-	*/
+	
 
+	function update_disposisi($id)
+	{
+		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
 
+		$this->m->update('disposisi',['id_disposisi'=>$id],[
+			'no_surat'	=>	$this->input->post('no_surat'),
+			'dari'	=>	$this->input->post('dari'),
+			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
+			'perihal'	=>	$this->input->post('perihal'),
+			'sifat'	=>	$this->input->post('sifat'),
+			'diteruskan'	=>	$this->input->post('diteruskan'),
+			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
+			'catatan'	=>	$this->input->post('catatan'),
+		]);
+		$this->session->set_flashdata('success', 'Disposisi berhasil di ubah!');
+		redirect($this->agent->referrer());
+	}
 
+	function del_disposisi($di)
+	{
+		$this->m->drop('disposisi',['id_disposisi'=>$di]);
+		$this->session->set_flashdata('success', 'Disposisi berhasil di hapus!');
+		redirect($this->agent->referrer());	
+	}
+/*
 	function update_disposisi($id) 
 	{
 		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
@@ -532,7 +557,7 @@ class Operator extends CI_Controller {
 		$this->session->set_flashdata('success', 'Tanggapan berhasil ditambah!');
 		redirect($this->agent->referrer());
 	} 
-
+*/
 	
 
 	function monitoringsurat()

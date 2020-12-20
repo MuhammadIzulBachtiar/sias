@@ -1,7 +1,7 @@
 <?php 
 $admin = $this->db->where('id_pegawai',$this->session->userdata('kasubag_umpeg'))->get('pegawai')->result();
 
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="en" data-textdirection="ltr" class="loading">

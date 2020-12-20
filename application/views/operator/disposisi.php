@@ -48,7 +48,13 @@
 											No Surat
 										</th>
 										<th>
+											Tanggal Surat
+										</th>
+										<th>
 											Tanggal diterima
+										</th>
+										<th>
+											Ditujukan Kepada
 										</th>
 										<th>
 											Dari
@@ -67,13 +73,15 @@
 									<tr>
 										<td><?php echo $no ?></td>
 										<td><?php echo $key->no_surat ?></td>
+										<td><?php echo $key->tgl_surat?></td>
 										<td><?php echo $key->tgl_diterima ?></td>
+										<td><?php echo $key->tujuan?></td>
 										<td><?php echo $key->dari ?></td>
 										<td><?php echo $key->perihal ?></td> 
 										
 										<td>
 											<button class="btn btn-outline-success" data-toggle="modal" data-target="#update<?php echo $key->id_disposisi ?>"><i data-toggle="tooltip" title="Tanggapan Disposisi" class="fa fa-edit">Tanggapan</i></button>
-											
+
 											<a href="<?php echo base_url('operator/detaildisposisi/'.$key->id_disposisi) ?>" class="btn btn-outline-primary"><i class="fa fa-search"></i>Rincian</a>
 										</td>
 									</tr>
@@ -117,6 +125,15 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="timesheetinput1">Tanggal Surat</label>
+								<div class="position-relative has-icon-right">
+									<input value="<?php echo $e->tgl_surat ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
+									<div class="form-control-position">
+										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="timesheetinput1">Diterima Tanggal</label>
 								<div class="position-relative has-icon-right">
 									<input value="<?php echo $e->tgl_diterima ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
@@ -134,6 +151,12 @@
 						</div>	
 
 						<div class="col-md-6">
+							<div class="form-group">
+								<label for="">Ditujukan Kepada</label>
+									<select name="Ditujukan Kepada" class="form-control" readonly="readonly">
+									<option<?php if ($e->tujuan=="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II") echo "selected"; ?> value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									</select>
+							</div>
 							<div class="form-group">
 									<label for="">Sifat</label>
 										<select name="sifat" class="form-control" readonly="readonly">
@@ -177,13 +200,13 @@
 
 								<div class="form-group">
 									<label for="">Tanggapan</label>
-									<textarea type="text" class="form-control" required="" name="dari" id="dari" name="Tanggapan" required="" id="" style="resize: none;height: 150px;" class="form-control" ><?php echo $e->tanggapan ?></textarea>
+									<textarea name="Tanggapan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->tanggapan ?></textarea>
 								</div>
 							
 						</div>
 						
 					
-				</div>
+				</div> 
 			</div>
 			<
 				<div class="modal-footer">

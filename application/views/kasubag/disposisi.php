@@ -73,7 +73,7 @@
 										
 										<td>
 											<button class="btn btn-outline-success" data-toggle="modal" data-target="#update<?php echo $key->id_disposisi ?>"><i data-toggle="tooltip" title="Tanggapan Disposisi" class="fa fa-edit">Tanggapan</i></button>
-
+											
 											<a href="<?php echo base_url('kasubag/detaildisposisi/'.$key->id_disposisi) ?>" class="btn btn-outline-primary"><i class="fa fa-search"></i>Rincian</a>
 										</td>
 									</tr>
@@ -140,15 +140,16 @@
 											<option value="">----</option>
 											<option <?php if($e->sifat=="SangatSegera") echo "selected"; ?> value="SangatSegera">Sangat segera</option>
 											<option <?php if($e->sifat=="Segera") echo "selected"; ?> value="Segera">Segera</option>
+											<option <?php if($e->sifat=="Biasa") echo "selected"; ?> value="Biasa">Biasa</option>
 											<option <?php if($e->sifat=="Rahasia") echo "selected"; ?> value="Rahasia">Rahasia</option>
 										</select>
 								</div>
 
 							<div class="form-group">
 									<label for="">Diteruskan kepada</label>
-									<select name="diteruskan" class="form-control" readonly="readonly">
+									<select name="diteruskan" class="form-control">
 										
-										<option <?php if($e->diteruskan=="Sekcam") echo "selected"; ?> value="Sekcam">Sekcam</option>
+										<option <?php if($e->diteruskan=="Operator") echo "selected"; ?> value="Operator">Operator</option>
 										<option <?php if($e->diteruskan=="Bag. Umum dan Kepegawaian") echo "selected"; ?> value="Bag. Umum dan Kepegawaian">Bag. Umum dan Kepegawaian</option>
 										<option <?php if($e->diteruskan=="Bag. Pemberdayaan Masyarakat") echo "selected"; ?> value="Bag. Pemberdayaan Masyarakat">Bag. Pemberdayaan Masyarakat</option>
 										<option <?php if($e->diteruskan=="Bag. Kependudukan") echo "selected"; ?> value="Bag. Kependudukan">Bag. Kependudukan</option>
@@ -161,7 +162,7 @@
 							
 							<div class="form-group">
 									<label for="">Dengan Hormat Harap</label>
-									<select name="dgn_hormat" class="form-control" readonly="readonly">
+									<select name="dgn_hormat" class="form-control" >
 										<option value="">----</option>
 										<option <?php if($e->dgn_hormat=="Tanggapan dan Saran")echo "selected"; ?> value="Tanggapan dan Saran">Tanggapan dan saran</option>
 										<option <?php if($e->dgn_hormat=="Proses lebih lanjut") echo "selected"; ?> value="Proses lebih lanjut">Proses lebih lanjut</option>
@@ -172,12 +173,7 @@
 							
 								<div class="form-group">
 									<label for="">Catatan</label>
-									<textarea name="catatan" required="" id="" style="resize: none;height: 150px;" class="form-control" readonly="readonly"><?php echo $e->catatan ?></textarea>
-								</div>
-
-								<div class="form-group">
-									<label for="">Tanggapan</label>
-									<textarea name="Tanggapan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->tanggapan ?></textarea>
+									<textarea name="catatan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->catatan ?></textarea>
 								</div>
 							
 						</div>

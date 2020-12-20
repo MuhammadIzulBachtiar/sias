@@ -38,7 +38,7 @@
 			<div class="card">
 				<div class="card-body " style="padding: 20px;">
 					<div class="row">
-						<form action="<?php echo base_url('camat/add_disposisi') ?>" method="post">
+						<form action="<?php echo base_url('kasubag/add_disposisi') ?>" method="post">
 							
 							<div class="col-md-6">
 								<div class="form-group">
@@ -47,7 +47,7 @@
 								</div>
 								<div class="form-group">
 									<label for="">Surat Dari</label>
-									<input readonly="" type="text" class="form-control"value="<?php echo $list->dari ?>" required="" name="dari">
+									<input readonly="readonly" type="text" class="form-control"value="<?php echo $list->dari ?>" required="" name="dari">
 								</div>
 								<div class="form-group">
 									<label for="timesheetinput1">Tanggal Surat</label>
@@ -82,6 +82,12 @@
 								</div>
 							</div>
 							<div class="col-md-6">
+								<div class="form-group">
+									<label for="">Ditujukan Kepada</label>
+									<select disabled="" name="tujuan" required="" class="form-control" id="">
+										<option <?php if ($list->tujuan=="Kepala Kantor Kesyahbandaraan dan Otoritas Pelabuhan Gresik II"){ echo "selected";}?>>Kepala Kantor Kesyahbandaraan dan Otoritas Pelabuhan Gresik II</option>
+									</select>
+								</div>
 								<div class="form-group">
 									<label for="">Diteruskan Kepada</label>
 									<input readonly="" type="text" value="<?php echo $list->diteruskan ?>" class="form-control" required="" name="diteruskan">
@@ -119,12 +125,11 @@
 			<div class="row">
 				<table class="table">
 					<tr>
-						<td><img src="<?php echo base_url('assets/logoprint.PNG') ?>" alt=""></td>
+						<td><img src="<?php echo base_url('assets/aye.PNG') ?>" alt=""></td>
 						<td>
 							<center>
-								<h3><b>PEMERINTAH KABUPATEN BANDUNG</b></h3>
-								<h2><b>KECAMATAN DAYEUHKOLOT</b></h2>
-								<p>Jl. Raya Dayeuhkolot NO.409, Citeureup. Telp/Fax: (022) 5223238 <br>email : kec_dayeuhkolot@yahoo.co.id Bandung 40257 </p>
+								<h3><b>PEMERINTAH PERHUBUNGAN LAUT<br>DIREKTORAT JENDRAL PERHUBUNGAN LAUT</b></h3>
+								<h3><b>LEMBAR DISPOSISI<br>KEPALA KANTOR KESYAHBANDRAN DAN<br>OTORITAS PELABUHAN KELAS II GRESIK</b></h3>
 							</center>
 
 						</td>
@@ -148,6 +153,10 @@
 								<tr>
 									<td style="width: 30%">Surat Dari</td>
 									<td><?php echo $list->dari ?></td>
+								</tr>
+								<tr>
+									<td style="width: 30%">Ditujukan Kepada</td>
+									<td><?php echo $list->tujuan ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
@@ -179,7 +188,7 @@
 						<br>
 						<br>
 						<div style="bottom: 0px; position: absolute;float: right!important;right: 0">
-							<b class="pull-right" style="margin-left: 50px;">Camat Dayeuhkolot</b>
+							<b class="pull-right" style="margin-left: 50px;">Kepala Kantor KSOP</b>
 							<br><br><br><br><br><br>
 							<b class="pull-right" style="letter-spacing: 2px;">(.....................................)</b>
 						</div>

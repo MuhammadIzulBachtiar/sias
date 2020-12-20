@@ -57,35 +57,15 @@ class Kasubag extends CI_Controller {
 		$this->load->view('kasubag/footer');		
 	}
 
-
 	function disposisi()
 	{
 		$data['title']   = "APS | Disposisi Surat";
-		$data['disposisi'] = $this->m->get_table('disposisi');
+		$data['list'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
+		//$data['list'] 	 = $this->m->get_table('disposisi');
 		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/tambah_disposisi');
+		$this->load->view('kasubag/disposisi');
 		$this->load->view('kasubag/footer');
 	}
-	/*
-	function daftardisposisi()
-	{
-		$data['title']   = "APS | Disposisi Surat";
-		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
-		//$data['disposisi'] = $this->m->get_table('disposisi');
-		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/daftar_disposisi');
-		$this->load->view('kasubag/footer'); 
-	}
-
-	function monitoring_disposisi(){
-		$data['title']   = "APS | Disposisi Surat";
-		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
-		//$data['disposisi'] = $this->m->get_table('disposisi');
-		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/monitoring_disposisi');
-		$this->load->view('kasubag/footer'); 
-	}
-	*/
 
 	function getsuratmasuk(){
 		$nomer_surat = $this->input->post('nomer');
@@ -99,17 +79,21 @@ class Kasubag extends CI_Controller {
 
 		echo json_encode($hasil);
 	}
-	/*
 
 	function detaildisposisi($id)
 	{
 		$data['title']   = "APS | Detail Disposisi Surat";
 		$data['list'] 	 = $this->m->get_where('disposisi',['id_disposisi'=>$id])->row();
+		$value = array(
+					'v_read' => '1'
+				);
+		$this->m->update('disposisi',['id_disposisi'=>$id],$value);
 		$this->load->view('kasubag/header', $data);
 		$this->load->view('kasubag/detail_disposisi');
 		$this->load->view('kasubag/footer');
 	}
-	*/
+
+	
 /*
 	function add_disposisi()
 	{
@@ -131,6 +115,26 @@ class Kasubag extends CI_Controller {
 		redirect($this->agent->referrer());
 	}
 	
+*/
+function update_disposisi($id) 
+	{
+		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
+
+		$this->m->update('disposisi',['id_disposisi'=>$id],[
+			'no_surat'	=>	$this->input->post('no_surat'),
+			'dari'	=>	$this->input->post('dari'),
+			'tgl_surat' =>$this->input->post('tgl_surat'),
+			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
+			'perihal'	=>	$this->input->post('perihal'),
+			'sifat'	=>	$this->input->post('sifat'),
+			'diteruskan'	=>	$this->input->post('diteruskan'),
+			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
+			'catatan'	=>	$this->input->post('catatan'),
+			'tanggapan' => $this->input->post('tanggapan'),
+		]);
+		$this->session->set_flashdata('success', 'Tanggapan berhasil ditambah!');
+		redirect($this->agent->referrer());
+	} 
 /*
 	function update_disposisi($id)
 	{

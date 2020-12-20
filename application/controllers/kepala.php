@@ -60,25 +60,18 @@ class kepala extends CI_Controller {
 		//$data['disposisi'] = $this->m->get_table('disposisi');
 		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
 		$this->load->view('kepala/header', $data);
-		$this->load->view('kepala/monitoring_disposisi');
+		$this->load->view('kepala/daftar_disposisi');
 		$this->load->view('kepala/footer');
 	}
 
-	/*function daftardisposisi()
+	function daftardisposisi()
 	{
 		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->m->get_table('disposisi');
 		$this->load->view('kepala/header', $data);
 		$this->load->view('kepala/daftar_disposisi');
 		$this->load->view('kepala/footer'); 
-	}*/
-
-	function tambah_disposisi(){
-		$data['title']   = "APS | Disposisi Surat";
-		$data['disposisi'] = $this->m->get_table('disposisi');
-		$this->load->view('kepala/header', $data);
-		$this->load->view('kepala/tambah_disposisi');
-		$this->load->view('kepala/footer'); 
+		
 	}
 
 	function getsuratmasuk(){

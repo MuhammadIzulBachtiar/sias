@@ -4,8 +4,8 @@
 			<h4 class="">
 				Detail Disposisi Surat : <?php echo $list->no_surat ?>
 			</h4> 
-			
-			<hr>
+			 
+			<hr> 
 		</div>
 		<div class="col-xs-12">
 			<?php 
@@ -49,6 +49,16 @@
 										<th style="width: 20%">Surat dari</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Ditujukan Kepada</th>
+										<th  style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tujuan ?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Tanggal Surat</th>
+										<th  style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Diterima tanggal</th>
@@ -120,7 +130,7 @@
 					</tr>
 				</table>
 				<div class="col-md-12">
-					<hr>
+					
 					<div class="col-md-12">
 						<center>
 							<table style="width: 100%" class="table table-striped">
@@ -128,7 +138,6 @@
 									<td><center><h3>LEMBAR DISPOSISI</h3></center></td>
 								</tr>
 							</table>
-							<hr>
 							<table class="table" style="width: 100%; border: 1px solid gray;padding: 10px;">
 								<tr>
 									<td style="width: 30%">NO Surat</td>
@@ -137,6 +146,10 @@
 								<tr>
 									<td style="width: 30%">Surat Dari</td>
 									<td><?php echo $list->dari ?></td>
+								</tr>
+								<tr>
+									<td style="width: 30%">Ditujukan Kepada</td>
+									<td><?php echo $list->tujuan ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Tanggal Surat</td>

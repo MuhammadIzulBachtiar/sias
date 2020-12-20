@@ -51,6 +51,16 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
+										<th style="width: 20%">Ditujukan kepada</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tujuan?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">tanggal surat</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat?></span></th>
+									</tr>
+									<tr>
 										<th style="width: 20%">Diterima tanggal</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tgl_diterima ?></span></th>
@@ -129,7 +139,7 @@
 									<td><center><h3>LEMBAR DISPOSISI</h3></center></td>
 								</tr>
 							</table>
-							<hr>
+							
 							<table class="table" style="width: 100%; border: 1px solid gray;padding: 10px;">
 								<tr>
 									<td style="width: 30%">NO Surat</td>
@@ -138,6 +148,10 @@
 								<tr>
 									<td style="width: 30%">Surat Dari</td>
 									<td><?php echo $list->dari ?></td>
+								</tr>
+								<tr>
+									<td style="width: 30%">Ditujukan Kepada</td>
+									<td><?php echo $list->tujuan ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
@@ -169,7 +183,7 @@
 						<br>
 						<br>
 						<div style="bottom: 0px; position: absolute;float: right!important;right: 0">
-							<b class="pull-right" style="margin-left: 50px;">Camat Dayeuhkolot</b>
+							<b class="pull-right" style="margin-left: 50px;">Kepala Kantor KSOP</b>
 							<br><br><br><br><br><br>
 							<b class="pull-right" style="letter-spacing: 2px;">(.....................................)</b>
 						</div>

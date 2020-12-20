@@ -49,7 +49,7 @@
 					
 						<div class="table-responsive m-t-40" style="margin-bottom: 15px;">
 					<div class="row">
-						<form action="<?php echo base_url('opertor/add_disposisi') ?>" method="post">
+						<form action="<?php echo base_url('operator/add_disposisi') ?>" method="post">
 
 							
 							<div class="col-md-6">
@@ -64,6 +64,16 @@
 								<div class="form-group">
 									<label for="">Surat Dari</label>
 									<input type="text" class="form-control" required="" name="dari" id="dari">
+								</div>
+
+								<div class="form-group">
+									<label for="timesheetinput1">Tanggal Surat</label>
+									<div class="position-relative has-icon-right">
+										<input type="text"autocomplete="off" class="form-control mydatepicker" placeholder="yyyy/mm/dd" name="tgl_surat" required="" id="tgl_surat">
+										<div class="form-control-position">
+											<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+										</div>
+									</div>
 								</div>
 								
 								<div class="form-group">
@@ -84,8 +94,15 @@
 								<div class="col-md-6">
 
 								<div class="form-group">
+									<label for="">Ditujukan Kepada</label>
+									<select  type="text" class="form-control" required="" name="tujuan" id="tujuan">
+										<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II"> Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									</select>
+								</div>
+
+								<div class="form-group">
 									<label for="">Sifat</label>
-									<select name="sifat" id="sifat" required="" class="form-control">
+									<select name="sifat" id="sifat" readonly="readonly" required="" class="form-control">
 										<option value="" hidden="">Pilih Sifat</option>
 										<option value="Sangat Segera">Sangat Segera</option>
 										<option value="Segera">Segera</option>
@@ -114,7 +131,7 @@
 
 								<div class="form-group">
 									<label for="">Dengan Hormat Harap</label>
-									<select name="dgn_hormat" id="dgn_hormat" required="" class="form-control">
+									<select name="dgn_hormat" id="dgn_hormat" readonly="readonly" required="" class="form-control">
 										<option value="" hidden="">Pilih Opsi</option>
 										<option value="Tanggapan dan saran">Tanggapan dan saran</option>
 										<option value="Proses lebih lanjut">Proses lebih lanjut</option>
@@ -123,11 +140,11 @@
 								</div>
 								<div class="form-group">
 									<label for="">Catatan</label>
-									<textarea id="catatan" name="catatan" required="" class="form-control" style="height: 150px"></textarea>
+									<textarea id="catatan" name="catatan" required="" class="form-control" style="height: 150px" readonly="readonly"></textarea>
 								</div>
 								<div class="form-group">
 									<button class="btn btn-outline-success" onclick="return confirm('Apakah data yang dimasukan telah benar?')">Simpan Data Disposisi</button>
-									<a href="<?php echo base_url('operator/disposisii') ?>" class="btn btn-outline-danger">Batal</a>
+									<a href="<?php echo base_url('operator/disposisi') ?>" class="btn btn-outline-danger">Batal</a>
 								</div>
 							</div>
 						
@@ -166,6 +183,7 @@
 					$("#dari").val(hasil.surat_dari);
 					$("#tgl_diterima").val(hasil.tgl_diterima);
 					$("#perihal").val(hasil.perihal);
+					$("#tgl_surat").val(hasil.tgl_surat);
 				}
 			}
 		});

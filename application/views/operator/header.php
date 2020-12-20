@@ -120,8 +120,9 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
     <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
       <span>Menu</span>
 
-      <li class=" nav-item"><a href="<?php echo base_url('oprator') ?>"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
+      <li class=" nav-item"><a href="<?php echo base_url('operator') ?>"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
       </li>
+      
       <li class=" nav-item"><a href="<?php echo base_url('operator/pegawai') ?>"><i class="icon-users2"></i><span data-i18n="nav.dash.main" class="menu-title">Kelola Pegawai </span></a>
       </li>
         
@@ -137,7 +138,7 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
         <li class=" nav-item"><a href="<?php echo base_url('operator/buatsurat') ?>"><i class="fa fa-envelope "></i><span data-i18n="nav.dash.main" class="menu-title">Buat Surat</span></a>
       </li>
       
-      <li class=" nav-item"><a href="<?php echo base_url('operator/disposisii') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?></span></a>
+      <li class=" nav-item"><a href="<?php echo base_url('operator/disposisi') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?></span></a>
       </li>
 
       <li class=" nav-item"><a href="<?php echo base_url('operator/monitoringsurat') ?>"><i class="fa fa-calendar"></i><span data-i18n="nav.dash.main" class="menu-title">Monitoring Surat</span></a>

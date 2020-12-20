@@ -47,7 +47,7 @@
 								</div>
 								<div class="form-group">
 									<label for="">Surat Dari</label>
-									<input readonly="readonly" type="text" class="form-control"value="<?php echo $list->dari ?>" required="" name="dari">
+									<input readonly="" type="text" class="form-control"value="<?php echo $list->dari ?>" required="" name="dari">
 								</div>
 								<div class="form-group">
 									<label for="timesheetinput1">Tanggal Surat</label>
@@ -84,7 +84,9 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="">Diteruskan Kepada</label>
-									<input readonly="" type="text" value="<?php echo $list->diteruskan ?>" class="form-control" required="" name="diteruskan">
+									<select disabled="" name="tujuan" required="" class="form-group" id="">
+										<option <?php if ($list->tujuan=="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II"){ echo "selected";}?> > Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									</select>
 								</div>
 								<div class="form-group">
 									<label for="">Dengan Hormat Harap</label>
@@ -150,6 +152,10 @@
 									<td><?php echo $list->dari ?></td>
 								</tr>
 								<tr>
+									<td style="width: 30%">Ditujukan Kepada</td>
+									<td><?php echo $list->tujuan ?></td>
+								</tr>
+								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
 									<td><?php echo $list->tgl_surat ?></td>
 								</tr>
@@ -179,7 +185,7 @@
 						<br>
 						<br>
 						<div style="bottom: 0px; position: absolute;float: right!important;right: 0">
-							<b class="pull-right" style="margin-left: 50px;">Camat Dayeuhkolot</b>
+							<b class="pull-right" style="margin-left: 50px;">Kepala Kantor KSOP</b>
 							<br><br><br><br><br><br>
 							<b class="pull-right" style="letter-spacing: 2px;">(.....................................)</b>
 						</div>
