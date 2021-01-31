@@ -121,9 +121,9 @@
 											<select name="akses" required="" class="form-control">
 												<option value="">----</option>
 												<option <?php if($key->akses=="Operator"){echo "selected";} ?> value="Operator">Operator</option>
-												<option <?php if($key->akses=="Staff Umpeg"){echo "selected";} ?> value="Staff Umpeg">Staff Umpeg</option>
-												<option <?php if($key->akses=="Kepala"){echo "selected";} ?> value="Kepala">Camat</option>
-												<option <?php if($key->akses=="Sekcam"){echo "selected";} ?> value="Sekcam">Sekcam</option>
+												<option <?php if($key->akses=="Staff"){echo "selected";} ?> value="Staff">Staff</option>
+												<option <?php if($key->akses=="Kepala"){echo "selected";} ?> value="Kepala">Kepala</option>
+												<option <?php if($key->akses=="Kasubag"){echo "selected";} ?> value="Kasubag">Kasubag</option>
 											</select>
 										</div>
 									</div>
@@ -212,9 +212,9 @@
 											<select name="akses" required="" class="form-control">
 												<option value="">----</option>
 												<option value="Operator">Operator</option>
-												<option value="Staff Umpeg">Staff Umpeg</option>
+												<option value="Staff">Staff</option>
 												<option value="Kepala">Kepala</option>
-												<option value="Sekcam">Sekcam</option>
+												<option value="Kasubag">Kasubag</option>
 											</select>
 										</div>
 									</div>

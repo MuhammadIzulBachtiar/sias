@@ -57,16 +57,6 @@ class Kasubag extends CI_Controller {
 		$this->load->view('kasubag/footer');		
 	}
 
-	function disposisi()
-	{
-		$data['title']   = "APS | Disposisi Surat";
-		$data['list'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
-		//$data['list'] 	 = $this->m->get_table('disposisi');
-		$this->load->view('kasubag/header', $data);
-		$this->load->view('kasubag/disposisi');
-		$this->load->view('kasubag/footer');
-	}
-
 	function getsuratmasuk(){
 		$nomer_surat = $this->input->post('nomer');
 		$validasi_disposisi =  $this->db->query("SELECT * FROM disposisi WHERE no_surat = '$nomer_surat'")->num_rows();
@@ -80,6 +70,16 @@ class Kasubag extends CI_Controller {
 		echo json_encode($hasil);
 	}
 
+	function disposisi()
+	{
+		$data['title']   = "APS | Disposisi Surat";
+		$data['list'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
+		//$data['list'] 	 = $this->m->get_table('disposisi');
+		$this->load->view('kasubag/header', $data);
+		$this->load->view('kasubag/disposisi');
+		$this->load->view('kasubag/footer');
+	}
+
 	function detaildisposisi($id)
 	{
 		$data['title']   = "APS | Detail Disposisi Surat";
@@ -91,32 +91,9 @@ class Kasubag extends CI_Controller {
 		$this->load->view('kasubag/header', $data);
 		$this->load->view('kasubag/detail_disposisi');
 		$this->load->view('kasubag/footer');
-	}
+	} 
 
-	
-/*
-	function add_disposisi()
-	{
-		$this->m->insert('disposisi',[
-			'no_surat'	=>	$this->input->post('no_surat'),
-			'dari'	=>	$this->input->post('dari'),
-			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
-			'perihal'	=>	$this->input->post('perihal'),
-			'sifat'	=>	$this->input->post('sifat'),
-			'diteruskan'	=>	$this->input->post('diteruskan'),
-			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
-			'catatan'	=>	$this->input->post('catatan'),
-			'tanggapan'=>0,
-			
-			
-		]);
-
-		$this->session->set_flashdata('success', 'Disposisi berhasil di tambahkan');
-		redirect($this->agent->referrer());
-	}
-	
-*/
-function update_disposisi($id) 
+	function update_disposisi($id) 
 	{
 		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
 
@@ -130,37 +107,13 @@ function update_disposisi($id)
 			'diteruskan'	=>	$this->input->post('diteruskan'),
 			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
 			'catatan'	=>	$this->input->post('catatan'),
-			'tanggapan' => $this->input->post('tanggapan'),
+			'teruntuk' => $this->input->post('teruntuk'),
+			'tujuan' => $this->input->post('tujuan'),
+			'tanggapan' => 0,
 		]);
 		$this->session->set_flashdata('success', 'Tanggapan berhasil ditambah!');
 		redirect($this->agent->referrer());
 	} 
-/*
-	function update_disposisi($id)
-	{
-		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
-
-		$this->m->update('disposisi',['id_disposisi'=>$id],[
-			'no_surat'	=>	$this->input->post('no_surat'),
-			'dari'	=>	$this->input->post('dari'),
-			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
-			'perihal'	=>	$this->input->post('perihal'),
-			'sifat'	=>	$this->input->post('sifat'),
-			'diteruskan'	=>	$this->input->post('diteruskan'),
-			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
-			'catatan'	=>	$this->input->post('catatan'),
-		]);
-		$this->session->set_flashdata('success', 'Disposisi berhasil di ubah!');
-		redirect($this->agent->referrer());
-	}
-	function del_disposisi($di)
-	{
-		$this->m->drop('disposisi',['id_disposisi'=>$di]);
-		$this->session->set_flashdata('success', 'Disposisi berhasil di hapus!');
-		redirect($this->agent->referrer());	
-	}
-	*/
-
 
 	function rekapitulasisurat()
 	{

@@ -51,12 +51,17 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
+										<th style="width: 20%">Kepada Yth</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->teruntuk?></span></th>
+									</tr>
+									<tr>
 										<th style="width: 20%">Ditujukan kepada</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tujuan?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">tanggal surat</th>
+										<th style="width: 20%">Tanggal surat</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat?></span></th>
 									</tr>
@@ -75,15 +80,16 @@
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->sifat ?></span></th>
 									</tr>
-									<tr>
-										<th style="width: 20%">Diteruskan kepada</th>
-										<th style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
-									</tr>
+									
 									<tr>
 										<th style="width: 20%">Dengan hormat harap</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->dgn_hormat ?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Diteruskan Kepada</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Catatan</th>
@@ -91,11 +97,7 @@
 										<th><span style="font-weight: bold;"><?php echo $list->catatan ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Tanggapan</th>
-										<th style="width: 5%"></th>
-										<th><span style="font-weight: bold;"><?php echo $list->tanggapan ?></span></th>
-								
-									</tr>
+										
 								</table>
 								
 								<br>
@@ -103,7 +105,8 @@
 									
 
 									<button class="btn btn-outline-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
-									
+									<a href="<?php echo base_url('operator/daftardisposisi') ?>" class="btn btn-outline-danger">Kembali</a>
+								<br>
 								</div>
 							</div>
 						</div>
@@ -154,6 +157,10 @@
 									<td><?php echo $list->tujuan ?></td>
 								</tr>
 								<tr>
+									<td style="width: 30%">Kepada Yth</td>
+									<td><?php echo $list->teruntuk ?></td>
+								</tr>
+								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
 									<td><?php echo $list->tgl_surat ?></td>
 								</tr>
@@ -165,14 +172,10 @@
 									<td style="width: 30%">Sifat</td>
 									<td><?php echo $list->sifat ?></td>
 								</tr>
-
+								
 								<tr>
 									<td style="width: 30%">Perilhal</td>
 									<td><?php echo $list->perihal ?></td>
-								</tr>
-								<tr>
-									<td style="width: 30%">Diteruskan Kepada</td>
-									<td><?php echo $list->diteruskan ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Dengan Hormat Harap</td>

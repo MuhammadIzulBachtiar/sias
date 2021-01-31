@@ -56,6 +56,9 @@
 										<th>
 											Perihal
 										</th>
+										<th>
+											Diteruskan
+										</th>
 										
 										<th class="text-center">
 											Aksi
@@ -70,6 +73,7 @@
 										<td><?php echo $key->tgl_diterima ?></td>
 										<td><?php echo $key->dari ?></td>
 										<td><?php echo $key->perihal ?></td> 
+										<td><?php echo $key->diteruskan?></td>
 										
 										<td>
 											<button class="btn btn-outline-success" data-toggle="modal" data-target="#update<?php echo $key->id_disposisi ?>"><i data-toggle="tooltip" title="Tanggapan Disposisi" class="fa fa-edit">Tanggapan</i></button>
@@ -117,6 +121,15 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="timesheetinput1">Tanggal Surat</label>
+								<div class="position-relative has-icon-right">
+									<input value="<?php echo $e->tgl_surat ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_surat" required="">
+									<div class="form-control-position">
+										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="timesheetinput1">Diterima Tanggal</label>
 								<div class="position-relative has-icon-right">
 									<input value="<?php echo $e->tgl_diterima ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
@@ -135,6 +148,31 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
+								<label for="">Ditujukan Kepada</label>
+									<select name="tujuan" class="form-control" readonly="readonly">
+									<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									</select>
+							</div>
+							<div class="form-group">
+									<label for="">Kepada Yth</label>
+										<select name="teruntuk" class="form-control" readonly="readonly">
+											<option value="">----</option>
+											<option <?php if($e->teruntuk=="Kasubag Tata Usaha") echo "selected"; ?> value="Kasubag Tata Usaha">Kasubag Tata Usaha</option>
+											<option <?php if($e->teruntuk=="Kepala Seksi Status Hukum dan Sertifikasi Kapal") echo "selected"; ?> value="Kepala Seksi Status Hukum dan Sertifikasi Kapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option <?php if($e->teruntuk=="Kasie Keselamatan Berlayar Penjegaandan Patrol") echo "selected"; ?> value="Kasie Keselamatan Berlayar Penjegaan dan Patrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option <?php if($e->teruntuk=="Kasie LALA dan Usaha Kepelabuhanan") echo "selected"; ?> value="Kasie LALA dan Usaha Kepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
+							<div class="form-group">
+									<label for="">Diteruskan kepada</label>
+									<select name="diteruskan" class="form-control" >
+										
+										<option <?php if($e->diteruskan=="Kepala Kantor") echo "selected"; ?> value="Kepala Kantor">Kepala Kantor</option>
+										<option <?php if($e->diteruskan=="Operator") echo "selected"; ?> value="Operator">Operator</option>
+										<option <?php if($e->diteruskan=="Staff") echo "selected"; ?> value="Staff">Staff</option>
+									</select>
+								</div>
+							<div class="form-group">
 									<label for="">Sifat</label>
 										<select name="sifat" class="form-control" readonly="readonly">
 											<option value="">----</option>
@@ -145,21 +183,6 @@
 										</select>
 								</div>
 
-							<div class="form-group">
-									<label for="">Diteruskan kepada</label>
-									<select name="diteruskan" class="form-control">
-										
-										<option <?php if($e->diteruskan=="Operator") echo "selected"; ?> value="Operator">Operator</option>
-										<option <?php if($e->diteruskan=="Bag. Umum dan Kepegawaian") echo "selected"; ?> value="Bag. Umum dan Kepegawaian">Bag. Umum dan Kepegawaian</option>
-										<option <?php if($e->diteruskan=="Bag. Pemberdayaan Masyarakat") echo "selected"; ?> value="Bag. Pemberdayaan Masyarakat">Bag. Pemberdayaan Masyarakat</option>
-										<option <?php if($e->diteruskan=="Bag. Kependudukan") echo "selected"; ?> value="Bag. Kependudukan">Bag. Kependudukan</option>
-										<option <?php if($e->diteruskan=="Bag. Pembangunan") echo "selected"; ?> value="Bag. Pembangunan">Bag. Pembangunan</option>
-										<option <?php if($e->diteruskan=="Bag. Program dan Keuangan") echo "selected"; ?> value="Bag. Program dan Keuangan">Bag. Program dan keuangan</option>
-										<option <?php if($e->diteruskan=="Bag. Sosial dan Budaya") echo "selected"; ?> value="Bag. Sosial dan Budaya">Bag. Sosial dan Budaya</option>
-										
-									</select>
-								</div>
-							
 							<div class="form-group">
 									<label for="">Dengan Hormat Harap</label>
 									<select name="dgn_hormat" class="form-control" >

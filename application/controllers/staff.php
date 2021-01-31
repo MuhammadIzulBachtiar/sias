@@ -292,7 +292,7 @@ class Staff extends CI_Controller{
 		$this->load->view('staff/disposisi');
 		$this->load->view('staff/footer');
 	}
-
+	
 
 	function detail($id)
 	{

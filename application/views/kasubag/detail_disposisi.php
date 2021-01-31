@@ -51,6 +51,11 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
+										<th style="width: 20%">Kepada Yth</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->teruntuk?></span></th>
+									</tr>
+									<tr>
 										<th style="width: 20%">Ditujukan Kepada</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tujuan ?></span></th>
@@ -76,11 +81,6 @@
 										<th><span style="font-weight: bold;"><?php echo $list->sifat ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Diteruskan kepada</th>
-										<th style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
-									</tr>
-									<tr>
 										<th style="width: 20%">Dengan hormat harap</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->dgn_hormat ?></span></th>
@@ -97,13 +97,14 @@
 								
 									</tr>
 								</table>
-								
+
 								<br>
 								<div class="form-group">
 									
 
 									<button class="btn btn-outline-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
-									
+									<a href="<?php echo base_url('kasubag/disposisi') ?>" class="btn btn-outline-danger">Kembali</a>
+								<br>
 								</div>
 							</div>
 						</div>
@@ -127,7 +128,7 @@
 							</center>
 
 						</td>
-					</tr>
+					</tr> 
 				</table>
 				<div class="col-md-12">
 					
@@ -146,6 +147,10 @@
 								<tr>
 									<td style="width: 30%">Surat Dari</td>
 									<td><?php echo $list->dari ?></td>
+								</tr>
+								<tr>
+									<td style="width: 30%">Kepada Yth</td>
+									<td><?php echo $list->teruntuk ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Ditujukan Kepada</td>

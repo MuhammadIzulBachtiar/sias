@@ -51,6 +51,11 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
+										<th style="width: 20%">Tanggal Surat</th>
+										<th  style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat ?></span></th>
+									</tr>
+									<tr>
 										<th style="width: 20%">Diterima tanggal</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tgl_diterima ?></span></th>
@@ -66,11 +71,7 @@
 										<th><span style="font-weight: bold;"><?php echo $list->sifat ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Diteruskan kepada</th>
-										<th style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
-									</tr>
-									<tr>
+
 										<th style="width: 20%">Dengan hormat harap</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->dgn_hormat ?></span></th>
@@ -92,12 +93,14 @@
 									</tr>
 								</table>
 								
-								<br>
+								<br> 
 								<div class="form-group">
 									<a href="<?php echo base_url('staff/update_disposisi') ?>" class="btn btn-outline-danger">Kirim</a>
 
-									<button class="btn btn-outline-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
 									
+									<button class="btn btn-outline-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
+									<a href="<?php echo base_url('staff/disposisi') ?>" class="btn btn-outline-danger">Kembali</a>
+								<br>
 								</div>
 							</div>
 						</div>

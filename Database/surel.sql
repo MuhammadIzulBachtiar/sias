@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Nov 2020 pada 07.37
+-- Waktu pembuatan: 30 Jan 2021 pada 09.45
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.8
 
@@ -41,22 +41,37 @@ CREATE TABLE `disposisi` (
   `id_pegawai` int(11) NOT NULL,
   `id_smasuk` int(11) NOT NULL,
   `v_read` int(11) NOT NULL,
-  `tanggapan` text NOT NULL
+  `tanggapan` text NOT NULL,
+  `tujuan` text NOT NULL,
+  `teruntuk` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `disposisi`
 --
 
-INSERT INTO `disposisi` (`id_disposisi`, `no_surat`, `diteruskan`, `dari`, `dgn_hormat`, `tgl_surat`, `tgl_diterima`, `sifat`, `perihal`, `catatan`, `id_pegawai`, `id_smasuk`, `v_read`, `tanggapan`) VALUES
-(6, '882/1525/Mutasi/2015', 'sdasdas', 'qwqw', 'Proses lebih lanjut', '0000-00-00', '2019-06-11', 'Segera', 'qwqwqw', 'sadsdads', 0, 0, 1, ''),
-(7, '12233', 'Sekcam', '', 'Tanggapan dan saran', '0000-00-00', '2020-08-05', 'Segera', '', 'jajal ae gae disposisi', 0, 0, 1, ''),
-(8, '122334', 'Bag.Umum dan Kepegawaian', '', 'Proses lebih lanjut', '0000-00-00', '2020-08-26', 'Rahasia', '', 'percobaan', 0, 0, 1, ''),
-(9, '11111', 'Bag.Umum dan Kepegawaian', '', 'Tanggapan dan saran', '0000-00-00', '2020-09-05', 'Segera', '', 'aaaaaaaaaaa', 0, 0, 1, ''),
-(10, '4', 'Bag. Pemberdayaan Masyarakat', '', 'Proses lebih lanjut', '0000-00-00', '2020-09-17', 'Segera', '', 'ccccccccccc', 0, 0, 1, ''),
-(11, '5', 'Sekcam', '', 'Koordinasi dan konfirmasi', '0000-00-00', '2020-09-10', 'SangatSegera', '', 'qqqqqqq', 0, 0, 1, ''),
-(12, '06/09/2020', 'Bag.Umum dan Kepegawaian', '', 'Tanggapan dan saran', '0000-00-00', '2020-09-06', 'Segera', '', 'di lanjut', 0, 0, 1, ''),
-(13, '121229202', 'Bag. Pembangunan', 'perguruan', 'Proses lebih lanjut', '0000-00-00', '2020-10-29', 'Rahasia', 'rapat penting', 'percobaan', 0, 0, 1, '');
+INSERT INTO `disposisi` (`id_disposisi`, `no_surat`, `diteruskan`, `dari`, `dgn_hormat`, `tgl_surat`, `tgl_diterima`, `sifat`, `perihal`, `catatan`, `id_pegawai`, `id_smasuk`, `v_read`, `tanggapan`, `tujuan`, `teruntuk`) VALUES
+(6, '882/1525/Mutasi/2015', 'sdasdas', 'qwqw', 'Proses lebih lanjut', '0000-00-00', '2019-06-11', 'Segera', 'qwqwqw', 'sadsdads', 0, 0, 1, '', '', ''),
+(7, '12233', 'Sekcam', '', 'Tanggapan dan saran', '0000-00-00', '2020-08-05', 'Segera', '', 'jajal ae gae disposisi', 0, 0, 1, '', '', ''),
+(8, '122334', 'Bag.Umum dan Kepegawaian', '', 'Proses lebih lanjut', '0000-00-00', '2020-08-26', 'Rahasia', '', 'percobaan', 0, 0, 1, '', '', ''),
+(9, '11111', 'Bag.Umum dan Kepegawaian', '', 'Tanggapan dan saran', '0000-00-00', '2020-09-05', 'Segera', '', 'aaaaaaaaaaa', 0, 0, 1, '', '', ''),
+(10, '4', 'Bag. Pemberdayaan Masyarakat', '', 'Proses lebih lanjut', '0000-00-00', '2020-09-17', 'Segera', '', 'ccccccccccc', 0, 0, 1, '', '', ''),
+(11, '5', 'Sekcam', '', 'Koordinasi dan konfirmasi', '0000-00-00', '2020-09-10', 'SangatSegera', '', 'qqqqqqq', 0, 0, 1, '', '', ''),
+(12, '06/09/2020', 'Bag.Umum dan Kepegawaian', '', 'Tanggapan dan saran', '0000-00-00', '2020-09-06', 'Segera', '', 'di lanjut', 0, 0, 1, '', '', ''),
+(13, '121229202', 'Bag. Pembangunan', 'perguruan', 'Proses lebih lanjut', '0000-00-00', '2020-10-29', 'Rahasia', 'rapat penting', 'percobaan', 0, 0, 1, '', '', ''),
+(15, '06/12/2020', 'Kepala', 'saya sendiri', 'Proses lebih lanjut', '0000-00-00', '2020-12-31', 'Biasa', 'dicoba dulu ya', 'ok', 0, 0, 1, '0', '', ''),
+(16, 'v/12/33/2020', 'Kasubag', 'saya sendiri2', 'Tanggapan dan saran', '0000-00-00', '2020-12-23', 'Segera', 'percobaan ulang', 'oke', 0, 0, 1, '0', '', ''),
+(17, '03/tpa/XII/05/2020', 'staff', '', 'Proses lebih lanjut', '0000-00-00', '2020-12-06', 'Segera', 'udangan', 'okkkke', 0, 0, 1, '', '', ''),
+(18, '123/12/3030', 'Bag. Umum dan Kepegawaian', 'kecamatan', 'Proses lebih lanjut', '0000-00-00', '2020-12-30', 'Segera', 'percobaan lagi', 'balasan surat', 0, 0, 1, '', '', ''),
+(19, '13/13/13/13/', 'Operator', 'kabupaten', 'Tanggapan dan Saran', '0000-00-00', '2020-12-30', 'Biasa', 'lagi lagi dan lagi', 'lanjutkan', 0, 0, 1, '', '', ''),
+(20, '14/14/14/1', 'Operator', 'runah', 'Proses lebih lanjut', '0000-00-00', '2020-12-23', 'Segera', 'okelah', 'buatkan surat keluar', 0, 0, 1, '', '', ''),
+(21, '1/1/2021', '', 'rumah saya', 'Proses lebih lanjut', '0000-00-00', '2020-12-31', '', 'percobaan ke 4', 'buat surat keluar ya', 0, 0, 1, '', '', ''),
+(22, '09/TPA/IX/2020', 'Operator', 'TPA AL-HIJROH 102', 'Proses lebih lanjut', '0000-00-00', '2020-12-23', '', 'mengundang untuk mengadakan rapat bersama', 'buat surat keluar okw', 0, 0, 1, '0', '', ''),
+(23, '10/TPA/IX/2020', 'Operator', 'TPA AL-HIJROH 102', 'Proses lebih lanjut', '0000-00-00', '2020-12-25', '', 'mengajak untuk rapat', 'surat keluar', 0, 0, 1, '0', '', ''),
+(24, '11/TPA/IX/2020', 'Operator', 'TPA AL-HIJROH 102', 'Proses lebih lanjut', '0000-00-00', '2020-12-30', 'Biasa', 'undangan', 'surat keluar', 0, 0, 1, '0', '', ''),
+(25, '12/TPA/IX/2020', 'Operator', 'TPA AL-HIJROH 102', 'Koordinasi dan konfirmasi', '2020-12-28', '2020-12-29', 'Segera', 'rapat penting', 'langsug menujuj lokasi', 0, 0, 1, '0', '', ''),
+(26, '1222222', 'Kasubag', 'tapa', '', '2021-01-13', '2021-01-15', 'Biasa', 'ajakan', '', 0, 0, 1, '0', '', 'Kasubag Tata Usaha'),
+(27, '12345', 'Operator', 'Muhammadiyah', 'Proses lebih lanjut', '2021-01-24', '2021-01-25', '', 'experiment ke-30', 'buat surat keluar', 0, 0, 1, '0', 'Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II', '');
 
 -- --------------------------------------------------------
 
@@ -100,7 +115,8 @@ INSERT INTO `keluar` (`id_skeluar`, `no_surat`, `kode_surat`, `tgl_keluar`, `dit
 (77, '4/K/KP/SEKRET', 'KP', '2020-10-19', 'Bapak. Kepala Desa Sukapura', 'surat kerja', '<p>assalamualaikum Wr. W</p>\r\n\r\n<p>dengan horamat kepada semua anggota untuk memiliki sirat kerja, adapun yang belum punya maka di seregakan membuat surat kerja</p>\r\n', 'Permohonan', '-', '', 0, ' ', 'Umum'),
 (78, '4/K/KP/SEKRET', 'KP', '2020-10-19', 'Bapak. Kepala Desa Sukapura', 'surat kerja', '<p>assalamualaikum Wr. W</p>\r\n\r\n<p>dengan horamat kepada semua anggota untuk memiliki sirat kerja, adapun yang belum punya maka di seregakan membuat surat kerja</p>\r\n', 'Permohonan', '-', '', 0, ' ', 'Umum'),
 (79, '4/K/KP/SEKRET', 'KP', '2020-10-19', 'Bapak. Kepala Desa Sukapura', 'surat kerja', '<p>assalamualaikum Wr. W</p>\r\n\r\n<p>dengan horamat kepada semua anggota untuk memiliki sirat kerja, adapun yang belum punya maka di seregakan membuat surat kerja</p>\r\n', 'Permohonan', '-', '', 0, ' ', 'Umum'),
-(80, '4/K/KP/SEKRET', 'KP', '2020-10-19', 'Bapak. Kepala Desa Sukapura', 'surat kerja', '<p>assalamualaikum Wr. W</p>\r\n\r\n<p>dengan horamat kepada semua anggota untuk memiliki sirat kerja, adapun yang belum punya maka di seregakan membuat surat kerja</p>\r\n', 'Permohonan', '-', '', 0, ' ', 'Umum');
+(80, '4/K/KP/SEKRET', 'KP', '2020-10-19', 'Bapak. Kepala Desa Sukapura', 'surat kerja', '<p>assalamualaikum Wr. W</p>\r\n\r\n<p>dengan horamat kepada semua anggota untuk memiliki sirat kerja, adapun yang belum punya maka di seregakan membuat surat kerja</p>\r\n', 'Permohonan', '-', '', 0, ' ', 'Umum'),
+(81, '4/K/kp/23/01/2021/SEKRET', 'kp/23/01/2021', '2021-01-30', 'persero', 'rapat penting ', '<p>aku</p>\r\n', 'Laporan', '-', '', 0, '1 Lembar', 'Umum');
 
 -- --------------------------------------------------------
 
@@ -168,7 +184,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama`, `pangkat`, `jabatan`, `akses
 (20, '196105041982091001', 'Drs. YIYIN SODIKIN, M.Si ', 'Pembina TK.1 ', 'Kepala', 'kepala', 'yiyin', 'yiyin', 0),
 (21, '196503181987031005', 'HERU KIATNO, S.Pd, M.Si', 'Pembina TK.1', 'kasubag', 'Kasubag', 'heru', 'heru', 0),
 (22, '196512051993111002', 'WIBAWA SANTIKA, S.Sos', 'Penata', 'Kasubag Umum dan Kepegawaian', 'Kasubag Umpeg', 'wibawa', 'wibawa', 0),
-(23, '197209202007012013', 'LINA SITI HALIMAH, SS', 'Penata', 'Kasubag Program dan Keuangan', 'Staff Umpeg', 'lina', 'lina', 0),
+(23, '197209202007012013', 'LINA SITI HALIMAH, SS', 'Penata', 'Kasubag Program dan Keuangan', 'Staff ', 'lina', 'lina', 0),
 (24, '197211042008011002', 'AGUS RUSTANDI, S.Ip', 'Penata', 'Kasi Kependudukan', 'Staff Umpeg', 'agus', 'agus', 0),
 (25, '196311121990031008', 'ENCEP SUHENDAR, S.Pd', 'Penata TK.1', 'KASI KETENTRAMAN & KETERTIBAN', 'Staff Umpeg', 'encep', 'encep', 0),
 (26, '196305111994032005', 'Dra. LIA NURHASLIA', 'Penata TK.1', 'KASI PEMBERDAYAAN MASYARAKAT ', 'Staff Umpeg', 'lia', 'lia', 0),
@@ -220,13 +236,13 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT untuk tabel `disposisi`
 --
 ALTER TABLE `disposisi`
-  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `keluar`
 --
 ALTER TABLE `keluar`
-  MODIFY `id_skeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_skeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `masuk`

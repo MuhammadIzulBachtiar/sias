@@ -60,7 +60,7 @@
 										<strong>Warning!</strong> Nomer surat sudah didisposisikan.
 									</div>
 								</div>
-
+ 
 								<div class="form-group">
 									<label for="">Surat Dari</label>
 									<input type="text" class="form-control" required="" name="dari" id="dari">
@@ -95,8 +95,9 @@
 
 								<div class="form-group">
 									<label for="">Ditujukan Kepada</label>
-									<select  type="text" class="form-control" required="" name="tujuan" id="tujuan">
-										<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II"> Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									<select name="tujuan" id="tujuan" required="" class="form-control">
+										<option value="" hidden="">Kepada</option>
+										<option value="KepalaKantorKesyahbandarandanOtoritasPelabuhanGresikII"> Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
 									</select>
 								</div>
 
@@ -110,21 +111,24 @@
 										<option value="Rahasia">Rahasia</option>
 									</select>
 								</div>
-								
-								
-							
-							
+
+								<div class="form-group">
+									<label for="">Kepada Yth</label>
+									<select name="teruntuk" id="teruntuk" required="" readonly="readonly" class="form-control">
+											<option value="">----</option>
+											<option value="Kasubag Tata Usaha">Kasubag Tata Usaha</option>
+											<option value="Kepala Seksi Status Hukum dan Sertifikasi Kapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option value="Kasie Keselamatan Berlayar Penjegaan dan Patrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option value="Kasie LALA dan Usaha Kepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
 								<div class="form-group">
 									<label for="">Diteruskan Kepada</label>
 									<select name="diteruskan" id="diteruskan" required="" class="form-control">
 									<option value="">Pilih Kepada</option>
 												<option value="Kasubag">Kasubag</option>
 												<option value="Kepala">Kepala Kantor</option>
-												<option value="Bag.Pemberdayaan Masyarakat">Bag. Pemberdayaan Masyarakat</option>
-												<option value="Bag.Pembangunan">Bag. Pembangunan</option>
-												<option value="Bag.Kependudukan">Bag. Kependudukan</option>
-												<option value="Bag.Program dan Keuangan">Bag. Program dan Keuangan</option>
-												<option value="Bag.Sosial dan Badaya">Bagian Sosial dan Badaya</option>
+												<option value="Staff">Staff</option>
 											</select>
 								</div>
 							

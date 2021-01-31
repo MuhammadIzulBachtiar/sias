@@ -51,6 +51,21 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
+										<th style="width: 20%">Kepada Yth</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->teruntuk?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Ditujukan kepada</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tujuan?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Tanggal Surat</th>
+										<th  style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat ?></span></th>
+									</tr>
+									<tr>
 										<th style="width: 20%">Diterima tanggal</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->tgl_diterima ?></span></th>
@@ -66,14 +81,15 @@
 										<th><span style="font-weight: bold;"><?php echo $list->sifat ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Diteruskan kepada</th>
-										<th style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
-									</tr>
-									<tr>
+										
 										<th style="width: 20%">Dengan hormat harap</th>
 										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->dgn_hormat ?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Diteruskan Kepada</th>
+										<th style="width: 5%"></th>
+										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Catatan</th>
@@ -81,7 +97,7 @@
 										<th><span style="font-weight: bold;"><?php echo $list->catatan ?></span></th>
 									</tr>
 								</table>
-								<a href="<?php echo base_url('kepala/daftardisposisi') ?>" class="btn btn-outline-danger">Kembali</a>
+								<a href="<?php echo base_url('kepala/disposisi') ?>" class="btn btn-outline-danger">Kembali</a>
 								<br>
 							</div>
 						</div>

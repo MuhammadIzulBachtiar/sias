@@ -49,7 +49,9 @@
 										<th>
 											No Surat
 										</th>
-										
+										<th>
+											Tanggal Diterima
+										</th>
 										<th>
 											Dari
 										</th>
@@ -59,9 +61,7 @@
 										<th>
 											Diteruskan
 										</th>
-										
 
-										
 
 									</tr>
 								</thead>
@@ -70,7 +70,7 @@
 									<tr>
 										<td><?php echo $no ?></td>
 										<td><?php echo $key->no_surat ?></td>
-										
+										<td><?php echo $key->tgl_diterima ?></td>
 										<td><?php echo $key->dari ?></td>
 										<td><?php echo $key->perihal ?></td>
 										<td><?php echo $key->diteruskan ?></td>
@@ -123,6 +123,16 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="timesheetinput1">Tanggal Surat</label>
+								<div class="position-relative has-icon-right">
+									<input value="<?php echo $e->tgl_surat ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_surat" required="">
+									<div class="form-control-position">
+										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+									</div>
+								</div>
+							</div>
+								
+							<div class="form-group">
 								<label for="timesheetinput1">Diterima Tanggal</label>
 								<div class="position-relative has-icon-right">
 									<input value="<?php echo $e->tgl_diterima ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
@@ -131,15 +141,21 @@
 									</div>
 								</div>
 							</div>
-								
+							
 									<div class="form-group">
 										<label for="">Perihal</label>
-										<textarea type="text" style="resize: none;height: 150px;" readonly="readonly" class="form-control" required="" name="perihal"><?php echo $e->perihal ?></textarea>
+									 	<textarea type="text" style="resize: none;height: 150px;" readonly="readonly" class="form-control" required="" name="perihal"><?php echo $e->perihal ?></textarea>
 									</div>	
 
 						</div>	
 
 						<div class="col-md-6">
+							<div class="form-group">
+								<label for="">Ditujukan Kepada</label>
+									<select name="Ditujukan Kepada" class="form-control" readonly="readonly">
+									<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									</select>
+							</div>
 							<div class="form-group">
 									<label for="">Sifat</label>
 										<select name="sifat" class="form-control">
@@ -151,18 +167,25 @@
 										</select>
 								</div>
 
+								<div class="form-group">
+									<label for="">Kepada Yth</label>
+										<select name="teruntuk" class="form-control" readonly="readonly">
+											<option value="">----</option>
+											<option <?php if($e->teruntuk=="Kasubag TataUsaha") echo "selected"; ?> value="Kasubag TataUsaha">Kasubag Tata Usaha</option>
+											<option <?php if($e->teruntuk=="Kepala SeksiS tatus Hukum dan Sertifikasi Kapal") echo "selected"; ?> value="Kepala Seksi Status Hukum dan Sertifikasi Kapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option <?php if($e->teruntuk=="Kasie Keselamatan Berlayar Penjegaan dan Patrol") echo "selected"; ?> value="Kasie Keselamatan Berlayar Penjegaan dan Patrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option <?php if($e->teruntuk=="Kasie LALA dan Usaha Kepelabuhanan") echo "selected"; ?> value="Kasie LALA dan Usaha Kepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
+
 							<div class="form-group">
 									<label for="">Diteruskan kepada</label>
 									<select name="diteruskan" class="form-control">
 										<option value="">----</option>
 										
-										<option <?php if($e->diteruskan=="Kasubag") echo "selected"; ?> value="Kasubag">Kasubag</option>
-										<option <?php if($e->diteruskan=="Bag. Umum dan Kepegawaian") echo "selected"; ?> value="Bag. Umum dan Kepegawaian">Bag. Umum dan Kepegawaian</option>
-										<option <?php if($e->diteruskan=="Bag. Pemberdayaan Masyarakat") echo "selected"; ?> value="Bag. Pemberdayaan Masyarakat">Bag. Pemberdayaan Masyarakat</option>
-										<option <?php if($e->diteruskan=="Bag. Kependudukan") echo "selected"; ?> value="Bag. Kependudukan">Bag. Kependudukan</option>
-										<option <?php if($e->diteruskan=="Bag. Pembangunan") echo "selected"; ?> value="Bag. Pembangunan">Bag. Pembangunan</option>
-										<option <?php if($e->diteruskan=="Bag. Program dan Keuangan") echo "selected"; ?> value="Bag. Program dan Keuangan">Bag. Program dan keuangan</option>
-										<option <?php if($e->diteruskan=="Bag. Sosial dan Budaya") echo "selected"; ?> value="Bag. Sosial dan Budaya">Bag. Sosial dan Budaya</option>
+										<option value="Kasubag">Kasubag</option>
+												<option value="Operator">Operator</option>
+												<option value="Staff">Staff</option>
 									</select>
 								</div>
 							

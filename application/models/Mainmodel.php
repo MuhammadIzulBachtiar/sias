@@ -17,7 +17,7 @@
  				);
  				$this->session->set_userdata( $array );
  				return 'operator';
- 			}elseif ($cek[0]->akses=="Staff Umpeg") {
+ 			}elseif ($cek[0]->akses=="Staff") {
  				$array = array(
  					'staff' => $cek[0]->id_pegawai,
  				);

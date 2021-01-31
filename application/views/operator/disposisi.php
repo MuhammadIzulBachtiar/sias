@@ -48,13 +48,7 @@
 											No Surat
 										</th>
 										<th>
-											Tanggal Surat
-										</th>
-										<th>
 											Tanggal diterima
-										</th>
-										<th>
-											Ditujukan Kepada
 										</th>
 										<th>
 											Dari
@@ -73,9 +67,7 @@
 									<tr>
 										<td><?php echo $no ?></td>
 										<td><?php echo $key->no_surat ?></td>
-										<td><?php echo $key->tgl_surat?></td>
 										<td><?php echo $key->tgl_diterima ?></td>
-										<td><?php echo $key->tujuan?></td>
 										<td><?php echo $key->dari ?></td>
 										<td><?php echo $key->perihal ?></td> 
 										
@@ -122,7 +114,7 @@
 										<label for="">Surat dari</label>
 										<input type="text" value="<?php echo $e->dari ?>" readonly="readonly" class="form-control" required="" autocomplete="off" name="dari">
 									</div>
-								</div>
+								</div> 
 							</div>
 							<div class="form-group">
 								<label for="timesheetinput1">Tanggal Surat</label>
@@ -147,16 +139,26 @@
 										<label for="">Perihal</label>
 										<textarea type="text" style="resize: none;height: 150px;" readonly="readonly" class="form-control" required="" name="perihal"><?php echo $e->perihal ?></textarea>
 									</div>	
-
+ 
 						</div>	
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Ditujukan Kepada</label>
-									<select name="Ditujukan Kepada" class="form-control" readonly="readonly">
-									<option<?php if ($e->tujuan=="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II") echo "selected"; ?> value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
+									<select name="tujuan" class="form-control" readonly="readonly">
+									<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
 									</select>
 							</div>
+							<div class="form-group">
+									<label for="">Kepada Yth</label>
+										<select name="teruntuk" class="form-control" readonly="readonly">
+											<option value="">----</option>
+											<option <?php if($e->teruntuk=="KasubagTataUsaha") echo "selected"; ?> value="KasubagTataUsaha">Kasubag Tata Usaha</option>
+											<option <?php if($e->teruntuk=="KepalaSeksiStatusHukumdanSertifikasiKapal") echo "selected"; ?> value="KepalaSeksiStatusHukumdanSertifikasiKapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option <?php if($e->teruntuk=="KasieKeselamatanBerlayarPenjegaandanPatrol") echo "selected"; ?> value="KasieKeselamatanBerlayarPenjegaandanPatrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option <?php if($e->teruntuk=="KasieLALAdanUsahaKepelabuhanan") echo "selected"; ?> value="KasieLALAdanUsahaKepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
 							<div class="form-group">
 									<label for="">Sifat</label>
 										<select name="sifat" class="form-control" readonly="readonly">
@@ -171,14 +173,9 @@
 									<label for="">Diteruskan kepada</label>
 									<select name="diteruskan" class="form-control" readonly="readonly">
 										
-										<option <?php if($e->diteruskan=="Sekcam") echo "selected"; ?> value="Sekcam">Sekcam</option>
-										<option <?php if($e->diteruskan=="Bag. Umum dan Kepegawaian") echo "selected"; ?> value="Bag. Umum dan Kepegawaian">Bag. Umum dan Kepegawaian</option>
-										<option <?php if($e->diteruskan=="Bag. Pemberdayaan Masyarakat") echo "selected"; ?> value="Bag. Pemberdayaan Masyarakat">Bag. Pemberdayaan Masyarakat</option>
-										<option <?php if($e->diteruskan=="Bag. Kependudukan") echo "selected"; ?> value="Bag. Kependudukan">Bag. Kependudukan</option>
-										<option <?php if($e->diteruskan=="Bag. Pembangunan") echo "selected"; ?> value="Bag. Pembangunan">Bag. Pembangunan</option>
-										<option <?php if($e->diteruskan=="Bag. Program dan Keuangan") echo "selected"; ?> value="Bag. Program dan Keuangan">Bag. Program dan keuangan</option>
-										<option <?php if($e->diteruskan=="Bag. Sosial dan Budaya") echo "selected"; ?> value="Bag. Sosial dan Budaya">Bag. Sosial dan Budaya</option>
-										
+										<option <?php if($e->diteruskan=="Kepala Kantor") echo "selected"; ?> value="Kepala Kantor">Kepala Kantor</option>
+										<option <?php if($e->diteruskan=="Kasubag") echo "selected"; ?> value="Kasubag">Kasubag</option>
+										<option <?php if($e->diteruskan=="Staff") echo "selected"; ?> value="Staff">Staff</option>
 									</select>
 								</div>
 							

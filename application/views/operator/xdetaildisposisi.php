@@ -81,9 +81,19 @@
 									<textarea readonly="" name="perihal" required="" class="form-control" style="height: 150px"><?php echo $list->perihal ?></textarea>
 								</div>
 							</div>
+							<div class="form-group">
+									<label for="">Kepada Yth</label>
+										<select name="teruntuk" class="form-control" readonly="readonly">
+											<option value="">----</option>
+											<option <?php if($e->teruntuk=="KasubagTataUsaha") echo "selected"; ?> value="KasubagTataUsaha">Kasubag Tata Usaha</option>
+											<option <?php if($e->teruntuk=="KepalaSeksiStatusHukumdanSertifikasiKapal") echo "selected"; ?> value="KepalaSeksiStatusHukumdanSertifikasiKapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option <?php if($e->teruntuk=="KasieKeselamatanBerlayarPenjegaandanPatrol") echo "selected"; ?> value="KasieKeselamatanBerlayarPenjegaandanPatrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option <?php if($e->teruntuk=="KasieLALAdanUsahaKepelabuhanan") echo "selected"; ?> value="KasieLALAdanUsahaKepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="">Diteruskan Kepada</label>
+									<label for="">Ditujukan Kepada</label>
 									<select disabled="" name="tujuan" required="" class="form-group" id="">
 										<option <?php if ($list->tujuan=="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II"){ echo "selected";}?> > Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
 									</select>
@@ -95,6 +105,15 @@
 										<option <?php if($list->dgn_hormat=="Tanggapan dan saran"){echo "selected";} ?> >Tanggapan dan saran</option>
 										<option <?php if($list->dgn_hormat=="Proses dan lanjut"){echo "selected";} ?> >Proses lebih lanjut</option>
 										<option <?php if($list->dgn_hormat=="Koordinasi dan konfirmasi"){echo "selected";} ?> >Koordinasi dan konfirmasi</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="">Diteruskan kepada</label>
+									<select name="diteruskan" class="form-control" readonly="readonly">
+										
+										<option <?php if($e->diteruskan=="Kepala Kantor") echo "selected"; ?> value="Kepala Kantor">Kepala Kantor</option>
+										<option <?php if($e->diteruskan=="Kasubag") echo "selected"; ?> value="Kasubag">Kasubag</option>
+										<option <?php if($e->diteruskan=="Staff") echo "selected"; ?> value="Staff">Staff</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -156,6 +175,10 @@
 									<td><?php echo $list->tujuan ?></td>
 								</tr>
 								<tr>
+									<td style="width: 30%">Kepada Yth</td>
+									<td><?php echo $list->teruntuk ?></td>
+								</tr>
+								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
 									<td><?php echo $list->tgl_surat ?></td>
 								</tr>
@@ -172,10 +195,7 @@
 									<td style="width: 30%">Perilhal</td>
 									<td><?php echo $list->perihal ?></td>
 								</tr>
-								<tr>
-									<td style="width: 30%">Diteruskan Kepada</td>
-									<td><?php echo $list->diteruskan ?></td>
-								</tr>
+
 								<tr>
 									<td style="width: 30%">Dengan Hormat Harap</td>
 									<td><?php echo $list->dgn_hormat ?></td>

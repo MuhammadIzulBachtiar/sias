@@ -97,25 +97,7 @@ class kepala extends CI_Controller {
 		$this->load->view('kepala/detail_disposisi');
 		$this->load->view('kepala/footer');
 	}
-
-	function add_disposisi()
-	{
-		$this->m->insert('disposisi',[
-			'no_surat'	=>	$this->input->post('no_surat'),
-			'dari'	=>	$this->input->post('dari'),
-			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
-			'perihal'	=>	$this->input->post('perihal'),
-			'sifat'	=>	$this->input->post('sifat'),
-			'diteruskan'	=>	$this->input->post('diteruskan'),
-			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
-			'catatan'	=>	$this->input->post('catatan'),
-			
-		]);
-
-		$this->session->set_flashdata('success', 'Disposisi berhasil di tambahkan');
-		redirect($this->agent->referrer());
-	}
-
+	
 	function update_disposisi($id)
 	{
 		$list  = $this->m->get_where('disposisi', ['id_disposisi' => $id])->result();
@@ -123,11 +105,14 @@ class kepala extends CI_Controller {
 		$this->m->update('disposisi',['id_disposisi'=>$id],[
 			'no_surat'	=>	$this->input->post('no_surat'),
 			'dari'	=>	$this->input->post('dari'),
+			'tgl_surat' =>$this->input->post('tgl_surat'),
 			'tgl_diterima'	=>	$this->input->post('tgl_diterima'),
 			'perihal'	=>	$this->input->post('perihal'),
 			'sifat'	=>	$this->input->post('sifat'),
+			'tujuan' => $this->input->post('tujuan'),
 			'diteruskan'	=>	$this->input->post('diteruskan'),
 			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
+			'teruntuk' => $this->input->post('teruntuk'),
 			'catatan'	=>	$this->input->post('catatan'),
 		]);
 		$this->session->set_flashdata('success', 'Disposisi berhasil di ubah!');

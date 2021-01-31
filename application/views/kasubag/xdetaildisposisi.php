@@ -89,8 +89,23 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="">Diteruskan Kepada</label>
-									<input readonly="" type="text" value="<?php echo $list->diteruskan ?>" class="form-control" required="" name="diteruskan">
+									<label for="">Kepada Yth</label>
+										<select name="teruntuk" class="form-control" readonly="readonly">
+											<option value="">----</option>
+											<option <?php if($e->teruntuk=="KasubagTataUsaha") echo "selected"; ?> value="KasubagTataUsaha">Kasubag Tata Usaha</option>
+											<option <?php if($e->teruntuk=="KepalaSeksiStatusHukumdanSertifikasiKapal") echo "selected"; ?> value="KepalaSeksiStatusHukumdanSertifikasiKapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
+											<option <?php if($e->teruntuk=="KasieKeselamatanBerlayarPenjegaandanPatrol") echo "selected"; ?> value="KasieKeselamatanBerlayarPenjegaandanPatrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
+											<option <?php if($e->teruntuk=="KasieLALAdanUsahaKepelabuhanan") echo "selected"; ?> value="KasieLALAdanUsahaKepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
+										</select>
+								</div>
+								<div class="form-group">
+									<label for="">Diteruskan kepada</label>
+									<select name="diteruskan" class="form-control" readonly="readonly">
+										
+										<option <?php if($e->diteruskan=="Kepala Kantor") echo "selected"; ?> value="Kepala Kantor">Kepala Kantor</option>
+										<option <?php if($e->diteruskan=="Kasubag") echo "selected"; ?> value="Kasubag">Kasubag</option>
+										<option <?php if($e->diteruskan=="Staff") echo "selected"; ?> value="Staff">Staff</option>
+									</select>
 								</div>
 								<div class="form-group">
 									<label for="">Dengan Hormat Harap</label>
@@ -157,6 +172,10 @@
 								<tr>
 									<td style="width: 30%">Ditujukan Kepada</td>
 									<td><?php echo $list->tujuan ?></td>
+								</tr>
+								<tr>
+									<td style="width: 30%">Kepada Yth</td>
+									<td><?php echo $list->teruntuk ?></td>
 								</tr>
 								<tr>
 									<td style="width: 30%">Tanggal Surat</td>
