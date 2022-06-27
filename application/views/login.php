@@ -7,7 +7,10 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Kesyabandaran dan Otoritas Pelabuhan</title>
+    <title>Sistem Informasi Arsip Surat</title>
+    <link href="<?php echo base_url();?>assets/app-assets/images/icons/PEKALONGAN1.png" rel='shortcut icon'>
+    <!-- <img src="<?php echo base_url();?>assets/app-assets/images/icons/abe.png" width="100px"> -->
+    
      <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/') ?>app-assets/css/bootstrap.css">
     <!-- font icons-->
@@ -24,7 +27,8 @@
 </head>
 <body data-open="click" data-menu="vertical-menu" data-col="1-column" class="vertical-layout vertical-menu 1-column  blank-page blank-page">
         <!-- ////////////////////////////////////////////////////////////////////////////-->
-        <div class="app-content content container-fluid" style="background: url('<?php echo base_url('assets/images3.jpg');?>'); background-size: cover;">
+        <div class="app-content content container-fluid" style="background: url('<?php echo base_url('assets/background.jpg');?>'); background-size: cover;">
+        <!-- <div class="app-content content container-fluid" style="background-color: white; background-size: cover;"> -->
             <div class="content-wrapper">
              <div class="content-header row">
               </div>
@@ -33,23 +37,24 @@
                     <div class="card border-grey border-lighten-3 m-0">
                         <div class="card-header no-border">
                             <div class="card-title text-xs-center">
-                                <div class= style ="color: #ac92ec;">Selamat datang</span></b></div>
-                                <div class= style ="color: #ac92ec;">Aplikasi Penyuratan KSOP Gresik</span></b></div>
+                            <img src="<?php echo base_url();?>assets/app-assets/images/icons/PEKALONGAN1.png" width="100px">
+                            <h2 class="text-primary mb-4"><b>Sistem Informasi Arsip Surat</b></h2>
+                            <h6 class="text-gray-900 mb-4">Badan Pengelolaan Keuangan Daerah<br>Kabupaten Pekalongan</h6>
 
                             </div>
                             <div class="card-body collapse in">
                                 <div class="card-block">
                                     <form class="form-horizontal form-simple" action="<?php echo base_url('auth/login') ?>" method="post" novalidate>
                                         <fieldset class="form-group position-relative has-icon-left mb-0">
-                                            <input type="text" class="form-control form-control-lg input-lg" autocomplete="off" id="user-name" name="username" placeholder="Masukan Username" required>
+                                            <input type="text" class="form-control form-control-lg input-lg" autocomplete="off" id="user-name" name="username" placeholder="Username" required>
                                             <div class="form-control-position">
-                                                <i class="icon-head"></i>
+                                                <i class="icon-person"></i>
                                             </div>
                                         </fieldset>
                                         <fieldset class="form-group position-relative has-icon-left">
-                                         <input type="password" class="form-control form-control-lg input-lg" id="user-password" autocomplete="off" name="password" placeholder="Masukan Password" required>
+                                         <input type="password" class="form-control form-control-lg input-lg" id="user-password" autocomplete="off" name="password" placeholder="Password" required>
                                          <div class="form-control-position">
-                                            <i class="icon-key3"></i>
+                                            <i class="icon-key2"></i>
                                         </div>
                                     </fieldset>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block"></i> Login</button>
@@ -70,8 +75,5 @@
         </div>
     </div>
 </div>
-
-
-
 </body>
 </html>

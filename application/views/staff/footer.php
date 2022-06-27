@@ -3,7 +3,7 @@
 </div>
 </div>
 <footer style="width: 100%;left: 0;position: fixed;bottom: 0" class="footer footer-static footer-light navbar-border">
-  <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2019 <a href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank" class="text-bold-800 grey darken-2">Proyek Akhir Aplikasi Pembuatan Surat </a>, All rights reserved. </span></p>
+  <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block"></span></p>
 </footer>
 <?php
   $undangan = $this->db->query("SELECT * FROM masuk WHERE kategori LIKE '%Undangan%'")->num_rows();

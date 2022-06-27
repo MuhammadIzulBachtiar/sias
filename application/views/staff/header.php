@@ -13,7 +13,9 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
   <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title><?php echo $title ?></title>
+  <title>Sistem Informasi Arsip Surat</title>
+  <link href="<?php echo base_url();?>assets/app-assets/images/icons/PEKALONGAN1.png" rel='shortcut icon'>
+  
 
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/') ?>app-assets/css/bootstrap.css">
@@ -52,6 +54,7 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
     }
   </style>
 </head>
+
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout  vertical-menu 2-columns  fixed-navbar">
 
   <!-- navbar-fixed-top-->
@@ -60,7 +63,6 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
       <div class="navbar-header">
         <ul class="nav navbar-nav">
           <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
-          
           <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
         </ul>
       </div>
@@ -68,77 +70,58 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
         <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
           <ul class="nav navbar-nav">
             <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5"></i></a></li>
-            
-          </ul>
-          
+            <!-- <img src="<?php echo base_url();?>assets/app-assets/images/icons/PEKALONGAN1.png" width="50px" class="nav-item hidden-sm-down"> -->
+			      <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main"><b>Sistem Informasi Arsip Surat</b></a></li>
+            <li><a class="nav-link nav-menu-main pull-right" style="float: right"><?php echo $admin[0]->nama ?>&nbsp|<i>&nbsp<?php echo $admin[0]->jabatan?></i></a></li>
+          </ul> 
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- main menu-->
-<div data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
+  <!-- main menu-->
+  <div data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
   <!-- main menu header-->
 
   <div class="sidebar sidebar-main sidebar-fixed">
         <div class="sidebar-content">
-
           <!-- User menu -->
-           <div class="main-menu-header">
-            <center>
-            <img src="<?php echo base_url();?>assets/app-assets/images/icons/abe.png" width="100px">
-            </center>
-          </div>
-          <div class="sidebar-user">
-            <div class="category-content">
-              <div class="media">
-                <a class="media-left"></a> 
-                <div class="media-body">
+          <!-- <div class="main-menu-header">
+            <div class="media-body">
               <span class="media-heading text-semibold"><?php echo $admin[0]->nama ?></span>
               <div class="text-size-mini text-muted">
-                
-                <i class="text-size-medium"></i> &nbsp;<?php echo $admin[0]->jabatan?>
-                
-                  </div>
-                </div>
-              </div>
+              <i class="text-size-medium"></i> &nbsp;<?php echo $admin[0]->jabatan?>
             </div>
           </div>
+            <div class="category-content">
+            </div>
+          </div> -->
         </div>
       </div>
-  
-  <!-- / main menu header-->
+    <!-- / main menu header-->
   <!-- main menu content-->
   <div class="main-menu-content">
-    <span>Menu</span>
     <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-      <li class=" nav-item"><a href="<?php echo base_url('staff') ?>"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
+      <li class=" nav-item"><i class=""></i><span data-i18n="nav.dash.main" class="menu-title">Menu</span></a>
       </li>
-      <li class=" nav-item"><a href="#"><i class="fa fa-envelope"></i><span data-i18n="nav.advance_cards.main" class="menu-title">Arsip Surat</span></a>
-        <ul class="menu-content">
-          <li><a href="<?php echo base_url('staff/suratmasuk') ?>" data-i18n="nav.cards.masuk" class="menu-item">Surat Masuk</a>
-          </li>
-          <li><a href="<?php echo base_url('staff/suratkeluar') ?>" data-i18n="nav.cards.keluar" class="menu-item">Surat Keluar</a>
-          </li>
-        </ul>
+      <li class=" nav-item"><a href="<?php echo base_url('staff') ?>"><i class="fa fa-home"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
       </li>
-    
+      <li class=" nav-item"><a href="<?php echo base_url('staff/suratmasuk') ?>"><i class="fa fa-inbox"></i><span data-i18n="nav.dash.main" class="menu-title">Surat Masuk</span></a>
+      </li>
+      <li class=" nav-item"><a href="<?php echo base_url('staff/suratkeluar') ?>"><i class="fa fa-share"></i><span data-i18n="nav.dash.main" class="menu-title">Surat Keluar</span></a>
+      </li>
+      <li class=" nav-item"><a href="<?php echo base_url('staff/undangan') ?>"><i class="fa fa-envelope"></i><span data-i18n="nav.dash.main" class="menu-title">Undangan</span></a>
+      </li>      
+      <li class=" nav-item"><a href="<?php echo base_url('staff/disposisi') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><!-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?> --></span></a>
+      </li>
+      <li class=" nav-item"><a href="<?php echo base_url('staff/rekapitulasisurat') ?>"><i class="fa fa-file"></i><span data-i18n="nav.dash.main" class="menu-title">Rekapitulasi Surat</span></a>
+      </li>
+      <li class="nav-item"><a href="<?php echo base_url('auth/logout')?>"><i class="icon-switch"></i> <span data-i18n="nav.dash.main" class="menu-title">Keluar </span></a></li>     
+    </ul>
+  </div>  
+</div>
+<!-- / main menu-->
 
-      <li class=" nav-item"><a href="<?php echo base_url('staff/buatsurat') ?>"><i class="fa fa-envelope "></i><span data-i18n="nav.dash.main" class="menu-title">Buat Surat</span></a>
-      </li>
-
-      <li class=" nav-item"><a href="<?php echo base_url('staff/disposisi') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?></span></a>
-      </li>
-      <li class=" nav-item"><a href="<?php echo base_url('staff/tugas') ?>"><i class="fa fa-calendar"></i><span data-i18n="nav.dash.main" class="menu-title">Monitoring Surat</span></a>
-      <li class=" nav-item"><a href="<?php echo base_url('staff/laporan') ?>"><i class="fa fa-file"></i><span data-i18n="nav.dash.main" class="menu-title">Rekapitulasi Surat</span></a>
-      </li>
-      
-       <li class="nav-item"><a href="<?php echo base_url('auth/logout')?>"><i class="icon-switch"></i> <span data-i18n="nav.dash.main" class="menu-title">Keluar </span></a></li>
-
-   
-    </div>  
-  </div>
-  <!-- / main menu-->
 
   <div class="app-content content container-fluid">
     <div class="content-wrapper">

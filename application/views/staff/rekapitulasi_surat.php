@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
 			<h3 class="">
-				<b>Rekapitulasi Surat</b>
+				<b>Laporan Rekapitulasi</b>
 			</h3>
 			
 			<hr>
@@ -35,14 +35,14 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-block">
-					<form action="<?php echo base_url('operator/hasil_rekap') ?>" method="post">
+					<form action="<?php echo base_url('staff/rekap') ?>" method="post">
 						<div class="form-group">
 							<label for="">Mulai Tanggal</label>
-							<input type="text" autocomplete="off" class="form-control mydatepicker" required=""  placeholder="mm/dd/yyyy" name="dari">
+							<input type="text"  autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" required="" name="dari">
 						</div>
 						<div class="form-group">
 							<label for="">Sampai Tanggal</label>
-							<input type="text" autocomplete="off" class="form-control mydatepicker" required="" placeholder="mm/dd/yyyy" name="sampai">
+							<input type="text"  autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" required="" name="sampai">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary">Tampilkan Rekapitulasi</button>
@@ -52,3 +52,6 @@
 			</div>
 		</div>
 	</div>
+</section>
+
+

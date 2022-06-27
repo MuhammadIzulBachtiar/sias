@@ -13,8 +13,9 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
   <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title><?php echo $title ?></title>
-
+  <title>Sistem Informasi Arsip Surat</title>
+  <link href="<?php echo base_url();?>assets/app-assets/images/icons/PEKALONGAN1.png" rel='shortcut icon'>
+  
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -67,9 +68,8 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
   <nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-semi-dark navbar-shadow ">
     <div class="navbar-wrapper">
       <div class="navbar-header">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav text-xs-center">
           <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
-         
           <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
         </ul>
       </div>
@@ -77,12 +77,13 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
         <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
           <ul class="nav navbar-nav">
             <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5"></i></a></li>
-          </ul>
-          
+			      <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main"><b>Sistem Informasi Arsip Surat</b></a></li>
+            <li><a class="nav-link nav-menu-main pull-right" style="float: right"><?php echo $admin[0]->nama ?>&nbsp|<i>&nbsp<?php echo $admin[0]->jabatan?></i></a></li>
+          </ul> 
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
 <!-- main menu-->
@@ -91,26 +92,16 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
   <div class="sidebar sidebar-main sidebar-fixed">
         <div class="sidebar-content">
           <!-- User menu -->
-          <div class="main-menu-header">
-            <center>
-            <img src="<?php echo base_url();?>assets/app-assets/images/icons/abe.png" width="100px">
-            </center>
-          </div>
-          <div class="sidebar-user">
-            <div class="category-content">
-              <div class="media">
-                <a class="media-left"></a> 
-                <div class="media-body">
+          <!-- <div class="main-menu-header">
+            <div class="media-body">
               <span class="media-heading text-semibold"><?php echo $admin[0]->nama ?></span>
               <div class="text-size-mini text-muted">
-                
-                <i class="text-size-medium"></i> &nbsp;<?php echo $admin[0]->jabatan?>
-                
-                  </div>
-                </div>
-              </div>
+              <i class="text-size-medium"></i> &nbsp;<?php echo $admin[0]->jabatan?>
             </div>
           </div>
+            <div class="category-content">
+            </div>
+          </div> -->
         </div>
       </div>
     <!-- / main menu header-->
@@ -118,15 +109,23 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
   <div class="main-menu-content">
    
     <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-      <span>Menu</span>
 
-      <li class=" nav-item"><a href="<?php echo base_url('operator') ?>"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
+     <li class=" nav-item"><i class=""></i><span data-i18n="nav.dash.main" class="menu-title">Menu</span></a>
       </li>
-      
-      <li class=" nav-item"><a href="<?php echo base_url('operator/pegawai') ?>"><i class="icon-users2"></i><span data-i18n="nav.dash.main" class="menu-title">Kelola Pegawai </span></a>
+
+      <li class=" nav-item"><a href="<?php echo base_url('operator') ?>"><i class="fa fa-home"></i><span data-i18n="nav.dash.main" class="menu-title">Dashboard</span></a>
+      </li>
+
+      <li class=" nav-item"><a href="<?php echo base_url('operator/suratmasuk') ?>"><i class="fa fa-inbox"></i><span data-i18n="nav.dash.main" class="menu-title">Surat Masuk</span></a>
+      </li>
+
+      <li class=" nav-item"><a href="<?php echo base_url('operator/suratkeluar') ?>"><i class="fa fa-share"></i><span data-i18n="nav.dash.main" class="menu-title">Surat Keluar</span></a>
+      </li>
+
+      <li class=" nav-item"><a href="<?php echo base_url('operator/undangan') ?>"><i class="fa fa-envelope"></i><span data-i18n="nav.dash.main" class="menu-title">Undangan</span></a>
       </li>
         
-    <li class=" nav-item"><a href="#"><i class="fa fa-envelope"></i><span data-i18n="nav.advance_cards.main" class="menu-title">Arsip Surat</spanent></a>
+    <!-- <li class=" nav-item"><a href="#"><i class="fa fa-envelope"></i><span data-i18n="nav.advance_cards.main" class="menu-title">Arsip Surat</spanent></a>
         <ul class="menu-cont">
           <li><a href="<?php echo base_url('operator/suratmasuk') ?>" data-i18n="nav.cards.masuk" class="menu-item">Surat Masuk</a>
           </li>
@@ -135,14 +134,17 @@ $total_disposisi = $this->db->where('v_read', '0')->get('disposisi')->num_rows()
         </ul>
       </li>
 
-        <li class=" nav-item"><a href="<?php echo base_url('operator/buatsurat') ?>"><i class="fa fa-envelope "></i><span data-i18n="nav.dash.main" class="menu-title">Buat Surat</span></a>
-      </li>
+      <li class=" nav-item"><a href="<?php echo base_url('operator/buatsurat') ?>"><i class="fa fa-envelope "></i><span data-i18n="nav.dash.main" class="menu-title">Buat Surat</span></a>
+      </li> -->
       
-      <li class=" nav-item"><a href="<?php echo base_url('operator/disposisi') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?></span></a>
+     <li class=" nav-item"><a href="<?php echo base_url('operator/daftardisposisi') ?>"><i class="fa fa-envelope-open"></i><span data-i18n="nav.dash.main" class="menu-title">Disposisi Surat</span><!-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2"><?php echo $total_disposisi;?> --></span></a>
       </li>
 
-      <li class=" nav-item"><a href="<?php echo base_url('operator/monitoringsurat') ?>"><i class="fa fa-calendar"></i><span data-i18n="nav.dash.main" class="menu-title">Monitoring Surat</span></a>
+      <li class=" nav-item"><a href="<?php echo base_url('operator/pegawai') ?>"><i class="fa fa-user"></i><span data-i18n="nav.dash.main" class="menu-title">Kelola Pegawai </span></a>
       </li>
+
+      <!-- <li class=" nav-item"><a href="<?php echo base_url('operator/monitoringsurat') ?>"><i class="fa fa-calendar"></i><span data-i18n="nav.dash.main" class="menu-title">Monitoring Surat</span></a>
+      </li> -->
       <li class=" nav-item"><a href="<?php echo base_url('operator/rekapitulasisurat') ?>"><i class="fa fa-file"></i><span data-i18n="nav.dash.main" class="menu-title">Rekapitulasi Surat</span></a>
       </li>
 

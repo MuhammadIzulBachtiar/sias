@@ -1,9 +1,9 @@
 <section id="basic-examples">
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
-			<h4 class="">
-				Kelola Surat keluar
-			</h4>
+			<h3 class="">
+				<b>Surat keluar</b>
+			</h3>
 		
 			<hr>
 		</div>
@@ -29,6 +29,7 @@
 			?>
 		</div>
 	</div>
+	
 	<br>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css') ?>">
 	<div class="row" style="margin-top: -30px;">
@@ -36,58 +37,67 @@
 			<div class="card">
 				<div class="container">
 					<div class="card-body">
-						<button class="btn btn-outline-primary pull-right" data-toggle="modal" data-target="#tambah">Tambah</button>
+						<br>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah</button>
 						<div class="table-responsive m-t-40" style="margin-bottom: 15px;">
-							<table cellspacing="0" class="display nowrap table table-hover table-striped table-bordered tableku" width="100%">
+							<table cellspacing="0" class="display nowrap table table-hover table-bordered tableku" style="width: 100%">
 								<thead>
-									<tr>
-										<th>
-											No
+									<tr style="font-weight: bold;">
+										<th width="50px">
+										<span style="font-size: small;">No</span>
 										</th>
 										<th>
-											No Surat
+										<span style="font-size: small;">Tanggal Catat</span>
 										</th>
 										<th>
-											Perihal
+										<span style="font-size: small;">No Surat</span>
 										</th>
 										<th>
-											Tanggal keluar
+										<span style="font-size: small;">Perihal</span>
 										</th>
 										<th>
-											Ditujukan
+										<span style="font-size: small;">Tanggal Surat</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Ditujukan</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Keterangan</span>
 										</th>
 										<th class="text-center">
-											Aksi
+										<span style="font-size: small;">Aksi</span>
 										</th>
 									</tr>
 								</thead>
 								<tbody id="isi">
 									<?php $no = 0; foreach ($keluar->result() as $key): $no++;?>
 									<tr>
-										<td><?php echo $no ?></td>
-										<td><?php echo $key->no_surat ?></td>
-										<td><?php echo $key->perihal ?></td>
-										<td><?php echo $key->tgl_keluar ?></td>
-										<td><?php echo $key->ditujukan?></td>
+										<td><span style="font-size: small;"><?php echo $no ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_catat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->no_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->perihal ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_keluar ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->ditujukan?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->keterangan?></span></td>
 										<td>
-											<button class="btn btn-outline-success" data-toggle="modal" data-target="#update<?php echo $key->id_skeluar ?>"><i data-toggle="tooltip" title="Update keluar" class="fa fa-edit"></i></button>
-											<a href="<?php echo base_url('operator/detailsuratkeluar/'.$key->id_skeluar) ?>" class="btn btn-outline-primary" data-toggle="tooltip" title="Detail Surat keluar"><i class="fa fa-search"></i></a>
-											<a href="<?php echo base_url('operator/delkeluar/'.$key->id_skeluar) ?>" class="btn btn-outline-danger" data-toggle="tooltip" onclick="return confirm('Hapus surat keluar?')" title="Hapus Surat keluar"><i class="fa fa-trash"></i></a>
-											
+											<button class="btn btn-success btn-sm " style="margin:5px" data-toggle="modal" data-target="#update<?php echo $key->id_skeluar ?>">Edit</button>
+											<a href="<?php echo base_url('operator/detailsuratkeluar/'.$key->id_skeluar) ?>" class="btn btn-primary btn-sm " style="margin:5px">Detail</a>
+											<a href="<?php echo base_url('operator/delkeluar/'.$key->id_skeluar) ?>" class="btn btn-danger btn-sm " style="margin:5px" onclick="return confirm('Hapus surat masuk?')">Hapus</a>
 										</td>
 									</tr>
-								<?php endforeach ?>
-							</tbody>
-						</table>
+									<?php endforeach ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</section>
+	</section>
 
-<?php foreach ($keluar->result() as $e): ?>
+	<!-- edit surat keluar -->
+	<?php foreach ($keluar->result() as $e): ?>
 	<div class="modal fade text-xs-left" id="update<?php echo $e->id_skeluar ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -95,7 +105,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel1">Edit Surat Keluar</h4>
+					<h3 class="modal-title" id="myModalLabel1"><b>Edit Surat Keluar</b></h3>
 				</div>
 				<form method="post" action="<?php echo base_url('operator/updatekeluar/'.$e->id_skeluar) ?>" enctype="multipart/form-data">
 					<div class="modal-body">
@@ -111,58 +121,60 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="">Kode Surat</label>
-											<input type="text" value="<?php echo $e->kode_surat ?>" class="form-control" required="" autocomplete="off" name="kode_surat">
-										</div>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label for="timesheetinput1">Tanggal keluar</label>
-									<div class="position-relative has-icon-right">
-										<input value="<?php echo $e->tgl_keluar ?>" type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_keluar" required="">
-										<div class="form-control-position">
-											<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
-										</div>
-									</div>
-								</div>
-							
-								
-									<div class="form-group">
-									<label for="">Ditujukan</label>
-									<input type="text" value="<?php echo $e->ditujukan ?>" class="form-control" required="" autocomplete="off" name="ditujukan">
-								</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="">Perihal</label>
-											<input value="<?php echo $e->perihal ?>" type="text" class="form-control" autocomplete="off" required="" name="perihal">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
 											<label for="">Kategori</label>
-									<select name="kategori" class="form-control">
-										<option value="">----</option>
-										<option <?php if($e->kategori=="Undangan") echo "selected"; ?> value="Undangan">Undangan</option>
-										<option <?php if($e->kategori=="Permohonan") echo "selected"; ?> value="Permohonan">Permohonan</option>
-										<option <?php if($e->kategori=="Laporan") echo "selected"; ?> value="Laporan">Laporan</option>
-										<option <?php if($e->kategori=="Pemberitahuan") echo "selected"; ?> value="Pemberitahuan">Pemberitahuan</option>
-										<option <?php if($e->kategori=="Himbauan") echo "selected"; ?> value="Himbauan">Himbauan</option>
-									</select>
+											<select name="kategori" class="form-control">
+												<option <?php if($e->kategori=="") echo "selected"; ?> value="">----</option>
+												<option <?php if($e->kategori=="Undangan") echo "selected"; ?> value="Undangan">Undangan</option>
+												<option <?php if($e->kategori=="Permohonan") echo "selected"; ?> value="Permohonan">Permohonan</option>
+												<option <?php if($e->kategori=="Laporan") echo "selected"; ?> value="Laporan">Laporan</option>
+												<option <?php if($e->kategori=="Pemberitahuan") echo "selected"; ?> value="Pemberitahuan">Pemberitahuan</option>
+												<option <?php if($e->kategori=="Himbauan") echo "selected"; ?> value="Himbauan">Himbauan</option>
+											</select>
 										</div>
 									</div>
+								</div>
 
-								
-							
-								
-							
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="timesheetinput1">Tanggal Catat</label>
+											<div class="position-relative has-icon-right">
+												<input value="<?php echo $e->tgl_catat ?>" type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_catat" required="">
+												<div class="form-control-position">
+													<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="timesheetinput1">Tanggal Surat</label>
+											<div class="position-relative has-icon-right">
+												<input value="<?php echo $e->tgl_keluar ?>" type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_keluar" required="">
+												<div class="form-control-position">
+													<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-							
+							<div class="form-group">
+								<label for="">Ditujukan</label>
+								<input type="text" value="<?php echo $e->ditujukan ?>" class="form-control" required="" autocomplete="off" name="ditujukan">
+							</div>
+
+							<div class="form-group">
+								<label for="">Perihal</label>
+								<textarea value="<?php echo $e->perihal ?>" style="resize: none;height: 130px;" type="text" class="form-control" autocomplete="off" required="" name="perihal"></textarea>
+							</div>										
 						</div>
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Keterangan Surat</label>
-								<textarea name="keterangan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->keterangan ?></textarea>
+								<textarea name="keterangan" style="resize: none;height: 150px;" class="form-control"><?php echo $e->keterangan ?></textarea>
 							</div>
 							<div class="form-group">
 								<label for="">Scan Foto</label>
@@ -170,18 +182,19 @@
 							</div>
 						</div>
 					</div>
-						</div>
+				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Tutup</button>
-					<button type="submit" id="btnsubmit<?php echo $e->id_skeluar ?>" class="btn btn-outline-primary">Simpan</button>
+					<button type="button" class="btn grey btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" id="btnsubmit<?php echo $e->id_skeluar ?>" class="btn btn-primary">Simpan</button>
 				</div>
-			</form>
+				</form>
+			</div>
 		</div>
-	</div>
-</div>	
-<?php endforeach ?>
+	</div>	
+	<?php endforeach ?>
 
+<!-- tambah surat keluar -->
 <div class="modal fade text-xs-left" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -189,7 +202,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel1">Tambah surat keluar</h4>
+				<h3 class="modal-title" id="myModalLabel1"><b>Tambah surat keluar</b></h3>
 			</div>
 			<form method="post" action="<?php echo base_url('operator/addkeluar') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
@@ -204,78 +217,76 @@
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="form-group">
-										<label for="">Kode Surat</label>
-										<input type="text" class="form-control" required="" autocomplete="off" name="kode_surat">
-									</div>
-								</div>
-							</div>
-								
-									<div class="form-group">
-										<label for="timesheetinput1">Tanggal keluar</label>
-									<div class="position-relative has-icon-right">
-											<input type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_keluar" required="">
-										<div class="form-control-position">
-										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
-										</div>
-									</div>
-								</div>
-
-								
-									<div class="form-group">
-									<label for="">Ditujukan</label>
-									<input type="text" class="form-control" required="" autocomplete="off" name="ditujukan">				
-								</div>
-	 
-								
-
-								
-									<div class="form-group">
-										<label for="">Perihal</label>
-										<textarea name="perihal" required="" id="" style="resize: none;height: 150px;" class="form-control"></textarea>
-									</div>
-								
-								
-									<div class="form-group">
+								<div class="form-group">
 										<label for="">Kategori</label>
 										<select name="kategori" class="form-control">
-										<option value="">----</option>
+												<option value="">----</option>
 												<option value="Undangan">Undangan</option>
 												<option value="Permohonan">Permohonan</option>
 												<option value="Laporan">Laporan</option>
 												<option value="Pemberitahuan">Pemberitahuan</option>
 												<option value="Himbauan">Himbauan</option>
-											</select>
+										</select>
 									</div>
-								
-							
-							
-							
-							
+								</div>
+							</div>
 
-							
-						
-					</div>
-					
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="">Keterangan Surat</label>
-							<textarea name="keterangan" required="" id="" style="resize: none;height: 150px;" class="form-control"></textarea>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="timesheetinput1">Tanggal Catat</label>
+										<div class="position-relative has-icon-right">
+											<input type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_catat" required="">
+											<div class="form-control-position">
+												<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="timesheetinput1">Tanggal Surat</label>
+										<div class="position-relative has-icon-right">
+											<input type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_keluar" required="">
+											<div class="form-control-position">
+												<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								
+							<div class="form-group">
+									<label for="">Ditujukan</label>
+									<input type="text" class="form-control" required="" autocomplete="off" name="ditujukan">				
+							</div>
+	 								
+							<div class="form-group">
+								<label for="">Perihal</label>
+								<textarea style="resize: none;height: 130px;" type="text" class="form-control" autocomplete="off" required="" name="perihal"></textarea>
+							</div>	
 						</div>
-						<div class="form-group">
-							<label for="">Scan Surat</label>
-							<input type="file" class="dropify" required="" name="foto">
+					
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="">Keterangan Surat</label>
+								<textarea name="keterangan"  style="resize: none;height: 150px;" class="form-control"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="">Scan Surat</label>
+								<input type="file" class="dropify"  name="foto">
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Tutup</button>
-				<button type="submit" id="btnsubmit" class="btn btn-outline-primary">Simpan</button>
-			</div>
-		</form>
+				<div class="modal-footer">
+					<button type="button" class="btn grey btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" id="btnsubmit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
 </div>
 
 <script>

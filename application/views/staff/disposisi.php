@@ -1,9 +1,9 @@
 <section id="basic-examples">
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
-			<h4 class="">
-				Disposisi Surat
-			</h4>
+		<h3 class="">
+				<b>Daftar Disposisi Surat</b>
+			</h3>
 			
 			<hr>
 		</div>
@@ -37,41 +37,48 @@
 				<div class="container">
 					<div class="card-body">
 						<div class="table-responsive m-t-40" style="margin-bottom: 15px;">
-							<table cellspacing="0" class="display nowrap table table-hover table-striped table-bordered tableku" width="100%">
+							<table cellspacing="0" class="display nowrap table table-hover table-bordered tableku" width="100%">
 								<thead>
-									<tr>
+									<tr style="font-weight: bold;">
 										<th>
-											No
+										<span style="font-size: small;">No</span>
 										</th>
 										<th>
-											No Surat
+										<span style="font-size: small;">No Surat</span>
 										</th>
 										<th>
-											Tanggal diterima
+										<span style="font-size: small;">Tanggal Surat</span>
 										</th>
 										<th>
-											Dari
+										<span style="font-size: small;">Dari</span>
 										</th>
 										<th>
-											Perihal
+										<span style="font-size: small;">Perihal</span>
 										</th>
-										
+										<th>
+										<span style="font-size: small;">Tanggal Diterima</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Diteruskan</span>
+										</th>
 										<th class="text-center">
-											Aksi
+										<span style="font-size: small;">Aksi</span>
 										</th>
+
 									</tr>
 								</thead>
 								<tbody id="isi">
 									<?php $no = 0; foreach ($list->result() as $key): $no++;?>
 									<tr>
-										<td><?php echo $no ?></td>
-										<td><?php echo $key->no_surat ?></td>
-										<td><?php echo $key->tgl_diterima ?></td>
-										<td><?php echo $key->dari ?></td>
-										<td><?php echo $key->perihal ?></td>
-										
+										<td><span style="font-size: small;"><?php echo $no ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->no_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->dari ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->perihal ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_diterima ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->diteruskan ?></span></td>	
 										<td>
-											<a href="<?php echo base_url('staff/detail/'.$key->id_disposisi) ?>" class="btn btn-outline-primary"><i class="fa fa-search"></i>Rincian</a>
+											<a href="<?php echo base_url('staff/detail/'.$key->id_disposisi) ?>" class="btn btn-primary btn-sm">Detail</a>
 										</td>
 									</tr>
 								<?php endforeach ?>

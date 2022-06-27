@@ -91,12 +91,12 @@
 
 								<div class="form-group">
 									<label for="">Ditujukan Kepada</label>
-									<input type="text" class="form-control" required="" name="ditujukan" id="ditujukan">
+									<input type="text" class="form-control" name="ditujukan" id="ditujukan">
 								</div>
 
 								<div class="form-group">
 									<label for="">Sifat</label>
-									<select name="sifat" id="sifat" required="" class="form-control">
+									<select name="sifat" id="sifat"  class="form-control">
 										<option value="" hidden="">Pilih Sifat</option>
 										<option value="Sangat Segera">Sangat Segera</option>
 										<option value="Segera">Segera</option>
@@ -107,7 +107,7 @@
 
 								<div class="form-group">
 									<label for="">Diteruskan Kepada</label>
-									<select name="diteruskan" id="diteruskan" required="" class="form-control">
+									<select name="diteruskan" id="diteruskan" class="form-control">
 									<option value="">----</option>
 											<option value="Kepala BPKD">Kepala BPKD</option>
 											<option value="Sekretaris">Sekretaris</option>
@@ -125,7 +125,7 @@
 								</div> -->
 								<div class="form-group">
 									<label for="">Catatan</label>
-									<textarea name="catatan" id="catatan" required="" class="form-control" style="height: 150px"></textarea>
+									<textarea name="catatan" id="catatan"  class="form-control" style="height: 150px"></textarea>
 								</div>
 
 								<div class="modal-footer">

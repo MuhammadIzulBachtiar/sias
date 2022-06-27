@@ -10,10 +10,10 @@ class Operator extends CI_Controller {
 		$this->load->model('Mainmodel','m');
 	}
 
+	// dashboard
 	function index()
 	{
-		$data['title'] = "APS | Operator-Dashboard";
-		$this->load->view('operator/header',$data);
+		$this->load->view('operator/header');
 		$this->load->view('operator/dashboard');
 		$this->load->view('operator/footer');
 	}
@@ -31,6 +31,7 @@ class Operator extends CI_Controller {
 		}
 	}
 
+// user
 	function cariusername($i)
 	{
 		$kata = str_replace('%20', ' ', $i);
@@ -58,9 +59,9 @@ class Operator extends CI_Controller {
 		redirect($this->agent->referrer());
 	}
 
+	//pegawai
 	function pegawai()
 	{
-		$data['title']   = "APS - Kelola Pegawai";
 		$data['pegawai'] = $this->m->get_table('pegawai');
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/pegawai');
@@ -78,18 +79,15 @@ class Operator extends CI_Controller {
 		}
 	}
 
-	
-
 	function tambahpegawai()
 	{
 		$this->m->insert('pegawai',[
-			'nip'	=>	$this->input->post('nip'),
-			'nama'	=>	$this->input->post('nama'),
-			'jabatan'	=>	$this->input->post('jabatan'),
-			'pangkat'	=>	$this->input->post('pangkat'),
+			'nip'		=>	$this->input->post('nip'),
+			'nama'		=>	$this->input->post('nama'),
 			'password'	=>	$this->input->post('password'),
 			'username'	=>	$this->input->post('username'),
-			'akses'	=>	$this->input->post('akses'),
+			'akses'		=>	$this->input->post('akses'),
+			'jabatan'   =>  $this->input->post('jabatan'),
 		]);
 		$this->session->set_flashdata('success', 'Pegawai berhasil di tambahkan!');
 		redirect($this->agent->referrer());
@@ -98,13 +96,12 @@ class Operator extends CI_Controller {
 	function updatepegawai($id)
 	{
 		$this->m->update('pegawai',['id_pegawai'=>$id],[
-			'nip'	=>	$this->input->post('nip'),
-			'nama'	=>	$this->input->post('nama'),
-			'jabatan'	=>	$this->input->post('jabatan'),
-			'pangkat'	=>	$this->input->post('pangkat'),
+			'nip'		=>	$this->input->post('nip'),
+			'nama'		=>	$this->input->post('nama'),
 			'password'	=>	$this->input->post('password'),
 			'username'	=>	$this->input->post('username'),
-			'akses'	=>	$this->input->post('akses'),
+			'akses'		=>	$this->input->post('akses'),
+			'jabatan'   =>  $this->input->post('jabatan'),
 		]);
 		$this->session->set_flashdata('success', 'Pegawai berhasil di ubah!');
 		redirect($this->agent->referrer());
@@ -123,10 +120,18 @@ class Operator extends CI_Controller {
 		redirect($this->agent->referrer());
 	}
 
+	// undangan	
+	function undangan()
+	{
+		$data['masuk'] = $this->db->query("SELECT * FROM masuk WHERE kategori='Undangan'");
+		$this->load->view('operator/header', $data);
+		$this->load->view('operator/undangan');
+		$this->load->view('operator/footer');
+	}
 	
+	// Surat masuk	
 	function suratmasuk()
 	{
-		$data['title']   = "APS - Kelola Surat Masuk";
 		$data['masuk'] = $this->db->query("SELECT * FROM masuk ORDER BY id_smasuk DESC");
 		//$data['masuk'] = $this->m->get_table('masuk');
 		$this->load->view('operator/header', $data);
@@ -150,34 +155,27 @@ class Operator extends CI_Controller {
 	function addmasuk()
 	{
 		$config['upload_path']="upload/masuk/"; //path folder file upload
-        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
         $judul = "Surat_".$this->input->post('no_surat');
         $config['file_name'] = $judul;
         
         $this->load->library('upload',$config); 
 
-        if($this->upload->do_upload("foto")){ 
-        	$data = array('upload_data' => $this->upload->data()); 
-        	$foto= $data['upload_data']['file_name']; 
 
         	$data = array(
         		'no_surat'			=> $this->input->post('no_surat'),
-        		'kode_surat'		=> $this->input->post('kode_surat'),
         		'kategori' 			=> $this->input->post('kategori'),
         		'pengirim'			=> $this->input->post('pengirim'),
         		'perihal'			=> $this->input->post('perihal'),
         		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
+				'tgl_surat'			=> $this->input->post('tgl_surat'),
         		'ditujukan'			=> $this->input->post('ditujukan'),
-        		'keterangan'			=> $this->input->post('keterangan'),
-        		'foto'			=> $foto
+				'Keterangan'		=> $this->input->post('Keterangan'),
+        		'foto'				=> $foto
         	);
         	$this->m->insert('masuk',$data);
         	$this->session->set_flashdata('success', 'Surat masuk berhasil di tambahkan');
         	redirect($this->agent->referrer());
-        }else{
-        	$this->session->set_flashdata('error', $this->upload->display_errors());
-        	redirect($this->agent->referrer());
-        }
     }
 
     function updatemasuk($id)
@@ -186,7 +184,7 @@ class Operator extends CI_Controller {
 
     	if(!empty($_FILES['foto']['name'])){
 			$config['upload_path']="upload/masuk/"; //path folder file upload
-	        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+	        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
 	        $judul = "Surat_".$this->input->post('no_surat');
 	        $config['file_name'] = $judul;
 
@@ -201,13 +199,13 @@ class Operator extends CI_Controller {
 
 	        	$data = array(
 	        		'no_surat'			=> $this->input->post('no_surat'),
-	        		'kode_surat'			=> $this->input->post('kode_surat'),
 	        		'kategori' 			=> $this->input->post('kategori'),
 	        		'pengirim'			=> $this->input->post('pengirim'),
 	        		'perihal'			=> $this->input->post('perihal'),
 	        		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
+					'tgl_surat'			=> $this->input->post('tgl_surat'),
 	        		'ditujukan'			=> $this->input->post('ditujukan'),
-	        		'keterangan'			=> $this->input->post('keterangan'),
+					'Keterangan'		=> $this->input->post('Keterangan'),
 	        		'foto'			=> $foto
 	        	);
 	        	$this->m->update('masuk',['id_smasuk'=>$id],$data);
@@ -221,19 +219,20 @@ class Operator extends CI_Controller {
 
 	    	$data = array(
 	    		'no_surat'			=> $this->input->post('no_surat'),
-	    		'kode_surat'			=> $this->input->post('kode_surat'),
 	    		'pengirim'			=> $this->input->post('pengirim'),
 	    		'kategori' 			=> $this->input->post('kategori'),
 	    		'perihal'			=> $this->input->post('perihal'),
 	    		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
+				'tgl_surat'			=> $this->input->post('tgl_surat'),
 	    		'ditujukan'			=> $this->input->post('ditujukan'),
-	    		'keterangan'			=> $this->input->post('keterangan'),
+				'Keterangan'		=> $this->input->post('Keterangan'),
 	    	);
 	    	$this->m->update('masuk',['id_smasuk'=>$id],$data);
 	    	$this->session->set_flashdata('success', 'Data berhasil di rubah');
 	    	redirect($this->agent->referrer());
 	    }
 	}
+
 	function delmasuk($id)
 	{
 		$lama  = $this->m->get_where('masuk', ['id_smasuk' => $id])->result();
@@ -248,16 +247,15 @@ class Operator extends CI_Controller {
 
 	function detailsuratmasuk($id)
 	{
-		$data['title']= "APS | Surat Masuk Detail";
 		$data['lama'] = $this->m->get_where('masuk', ['id_smasuk' => $id])->result();
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/detail_suratmasuk');
 		$this->load->view('operator/footer');		
 	}
 	
+	// Surat Keluar
 	function suratkeluar()
 	{
-		$data['title']   = "APS| Manage Surat Keluar";
 		$data['keluar'] = $this->db->query("SELECT * FROM keluar ORDER BY id_skeluar DESC");
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/surat_keluar');
@@ -280,35 +278,27 @@ class Operator extends CI_Controller {
 	function addkeluar($value='')
 	{
 		$config['upload_path']="upload/keluar/"; //path folder file upload
-        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
         $judul = "Surat_".$this->input->post('no_surat');
         $config['file_name'] = $judul;
         
         $this->load->library('upload',$config); 
 
-        if($this->upload->do_upload("foto")){ 
-        	$data = array('upload_data' => $this->upload->data()); 
-        	$foto= $data['upload_data']['file_name']; 
-
         	$data = array(
         		'no_surat'			=> $this->input->post('no_surat'),
-        		'kode_surat'			=> $this->input->post('kode_surat'),
         		'ditujukan'			=> $this->input->post('ditujukan'),
         		'kategori'			=> $this->input->post('kategori'),
-        		'tgl_keluar'			=> $this->input->post('tgl_keluar'),
+        		'tgl_keluar'		=> $this->input->post('tgl_keluar'),
+				'tgl_catat'		    => $this->input->post('tgl_catat'),
         		'perihal'			=> $this->input->post('perihal'),
-        		'keterangan'			=> $this->input->post('keterangan'),
-        		
+        		'keterangan'		=> $this->input->post('keterangan'),
         		'foto'			=> $foto
         	);
         	$this->m->insert('keluar',$data);
         	$this->session->set_flashdata('success', 'Surat keluar berhasil di tambahkan');
         	redirect($this->agent->referrer());
-        }else{
-        	$this->session->set_flashdata('error', $this->upload->display_errors());
-        	redirect($this->agent->referrer());
-        }
     }
+
     function updatekeluar($id)
     {
     	
@@ -316,7 +306,7 @@ class Operator extends CI_Controller {
 
     	if(!empty($_FILES['foto']['name'])){
 			$config['upload_path']="upload/keluar/"; //path folder file upload
-	        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+	        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
 	        $judul = "Surat_".$this->input->post('no_surat');
 	        $config['file_name'] = $judul;
 
@@ -331,7 +321,7 @@ class Operator extends CI_Controller {
 
 	        	$data = array(
 	        		'no_surat'			=> $this->input->post('no_surat'),
-	        		'kode_surat'			=> $this->input->post('kode_surat'),
+	        		'tgl_catat'		    => $this->input->post('tgl_catat'),
 	        		'ditujukan'			=> $this->input->post('ditujukan'),
 	        		'kategori'			=> $this->input->post('kategori'),
 	        		'tgl_keluar'			=> $this->input->post('tgl_keluar'),
@@ -351,7 +341,7 @@ class Operator extends CI_Controller {
 
 	    	$data = array(
 	    		'no_surat'			=> $this->input->post('no_surat'),
-	    		'kode_surat'			=> $this->input->post('kode_surat'),
+	    		'tgl_catat'		    => $this->input->post('tgl_catat'),
 	    		'ditujukan'			=> $this->input->post('ditujukan'),
 	    		'kategori'			=> $this->input->post('kategori'),
 	    		'tgl_keluar'			=> $this->input->post('tgl_keluar'),
@@ -368,7 +358,6 @@ class Operator extends CI_Controller {
 
 	function detailsuratkeluar($id)
 	{
-		$data['title']= "APS| Surat Keluar Detail";
 		$data['lama'] = $this->m->get_where('keluar', ['id_skeluar' => $id])->result();
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/detail_suratkeluar');
@@ -389,8 +378,16 @@ class Operator extends CI_Controller {
 	}
 	
 	
+// disposisi
+	function laman_disposisi($id)
+	{
+		$data['lama'] = $this->m->get_where('masuk', ['id_smasuk' => $id])->result();
+		$this->load->view('operator/header', $data);
+		$this->load->view('operator/add_disposisi');
+		$this->load->view('operator/footer');		
+	}
+
 	function monitoring_disposisi(){
-		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
 		//$data['disposisi'] = $this->m->get_table('disposisi');
 		$this->load->view('operator/header', $data);
@@ -400,7 +397,6 @@ class Operator extends CI_Controller {
 	
 	function daftardisposisi()
 	{
-		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->db->query("SELECT * FROM disposisi ORDER BY id_disposisi DESC");
 		//$data['disposisi'] = $this->m->get_table('disposisi');
 		$this->load->view('operator/header', $data);
@@ -410,7 +406,6 @@ class Operator extends CI_Controller {
 	
 	function detaildisposisi($id)
 	{
-		$data['title']   = "APS | Detail Disposisi Surat";
 		$data['list'] 	 = $this->m->get_where('disposisi',['id_disposisi'=>$id])->row();
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/detail_disposisi');
@@ -428,11 +423,8 @@ class Operator extends CI_Controller {
 			'perihal'	=>	$this->input->post('perihal'),
 			'sifat'	=>	$this->input->post('sifat'),
 			'diteruskan'	=>	$this->input->post('diteruskan'),
-			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
 			'catatan'	=>	$this->input->post('catatan'),
-			'teruntuk' => $this->input->post('teruntuk'),
-			'tujuan' => $this->input->post('tujuan'),
-			'tanggapan'=>0,
+			'ditujukan'	=>	$this->input->post('ditujukan'),
 			
 			
 		]);
@@ -443,7 +435,6 @@ class Operator extends CI_Controller {
 	
 	function disposisi()
 	{
-		$data['title']   = "APS | Disposisi Surat";
 		$data['disposisi'] = $this->m->get_table('disposisi');
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/tambah_disposisi');
@@ -457,7 +448,7 @@ class Operator extends CI_Controller {
 			$hasil = array("hasil" => "ada");
 		}else{
 			$validasi = $this->db->query("SELECT * FROM masuk WHERE no_surat = '$nomer_surat'")->row_array();
-			$hasil = array("surat_dari" => $validasi['pengirim'], "tgl_diterima" => $validasi['tgl_masuk'], "perihal" => $validasi['perihal']);	
+			$hasil = array("surat_dari" => $validasi['pengirim'], "tgl_diterima" => $validasi['tgl_masuk'], "tgl_surat" => $validasi['tgl_surat'], "ditujukan" => $validasi['ditujukan'], "perihal" => $validasi['perihal']);	
 		}
 
 		echo json_encode($hasil);
@@ -476,8 +467,8 @@ class Operator extends CI_Controller {
 			'perihal'	=>	$this->input->post('perihal'),
 			'sifat'	=>	$this->input->post('sifat'),
 			'diteruskan'	=>	$this->input->post('diteruskan'),
-			'dgn_hormat'	=>	$this->input->post('dgn_hormat'),
 			'catatan'	=>	$this->input->post('catatan'),
+			'ditujukan'	=>	$this->input->post('ditujukan'),
 		]);
 		$this->session->set_flashdata('success', 'Disposisi berhasil di ubah!');
 		redirect($this->agent->referrer());
@@ -492,7 +483,6 @@ class Operator extends CI_Controller {
 
 	function monitoringsurat()
 	{
-		$data['title']   = "APS - Monitoring Surat";
 		$data['keluar'] = $this->m->get_table('keluar');
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/monitoring_surat');
@@ -500,10 +490,10 @@ class Operator extends CI_Controller {
 		
 	}
 
+	// rekapitulasi surat
 	function rekapitulasisurat()
 	{
-		$data['title']   = "APS - Rekapitulasi Surat";
-		$this->load->view('operator/header', $data);
+		$this->load->view('operator/header');
 		$this->load->view('operator/rekapitulasi_surat');
 		$this->load->view('operator/footer');
 		
@@ -512,20 +502,59 @@ class Operator extends CI_Controller {
 	function hasil_rekap()
 	{
 		$data['masuk']  = $this->db->where("tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('masuk');
-		$data['keluar']  = $this->db->where("tgl_keluar BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('keluar');
+		$data['keluar']  = $this->db->where("tgl_catat BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('keluar');
 		$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('disposisi');
-		$data['title']   = "APS - Rekapitulasi Surat";
+		$data['undangan']  = $this->db->where("tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' and kategori='Undangan'")->get('masuk');
+		//$data['total_undangan']  = $this->db->where("kategori='Undangan' and  tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' and ' ")->get('masuk');
+		//$data['total_undangan'] = $this->db->query("SELECT COUNT(*) FROM  masuk WHERE kategori='Undangan' AND tgl_masuk BETWEEN '2022-06-1' AND '2022-06-30';");
 		$data['dari'] = $this->input->post('dari');
 		$data['sampai'] = $this->input->post('sampai');
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/hasil_rekap');
-		$this->load->view('operator/footer');
-			
+		$this->load->view('operator/footer');		
 	}
+
+	function cetak_exportsm(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['masuk']  = $this->db->where("tgl_masuk BETWEEN '".$dari."' and '".$sampai."' ")->get('masuk');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('operator/export_excelsm', $data);
+	}
+
+	function cetak_exportsk(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['keluar']  = $this->db->where("tgl_catat BETWEEN '".$dari."' and '".$sampai."' ")->get('keluar');
+		//$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$dari."' and '".$sampai."' ")->get('disposisi');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('operator/export_excelsk', $data);
+	}
+
+	function cetak_exportds(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('disposisi');
+		//$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$dari."' and '".$sampai."' ")->get('disposisi');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('operator/export_excelds', $data);
+	}
+
+	function cetak_export_undangan(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['undangan']  = $this->db->where("tgl_masuk BETWEEN '".$dari."' and '".$sampai."' and kategori='Undangan'")->get('masuk');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('operator/export_excel_undangan', $data);
+	}
+
 
 	function buatsurat()
 	{
-		$data['title']   = "APS | Buat Surat";
 		$data['sub'] = "Surat";
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/buat_surat');
@@ -535,7 +564,6 @@ class Operator extends CI_Controller {
 
 	function permohonan()
 	{
-		$data['title']   = "APS | Buat Permohonan";
 		$data['sub'] = "Permohonan";
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/undangan');
@@ -544,7 +572,6 @@ class Operator extends CI_Controller {
 
 	public function buat_laporan()
 	{
-		$data['title']   = "APS | Buat Laporan";
 		$data['sub'] = "Laporan";
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/surat_laporan');
@@ -553,8 +580,6 @@ class Operator extends CI_Controller {
 
 	public function pemberitahuan()
 	{
-	
-		$data['title']   = "APS | Buat Pemberitahuan";
 		$data['sub'] = "Pemberitahuan";
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/undangan');
@@ -564,8 +589,6 @@ class Operator extends CI_Controller {
 
 	public function himbauan()
 	{
-	
-		$data['title']   = "APS | Buat Himbauan";
 		$data['sub'] = "Himbauan";
 		$this->load->view('operator/header', $data);
 		$this->load->view('operator/undangan');
@@ -625,15 +648,6 @@ class Operator extends CI_Controller {
     	$this->load->view('operator/cetak_print', $data);
     }
 
-    function cetak_export(){
-		$dari = $this->uri->segment(3);
-		$sampai = $this->uri->segment(4);
-		$data['masuk']  = $this->db->where("tgl_masuk BETWEEN '".$dari."' and '".$sampai."' ")->get('masuk');
-		$data['keluar']  = $this->db->where("tgl_keluar BETWEEN '".$dari."' and '".$sampai."' ")->get('keluar');
-		$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$dari."' and '".$sampai."' ")->get('disposisi');
-		$data['dari'] = $dari;
-		$data['sampai'] = $sampai;
-		$this->load->view('operator/export_excel', $data);
-	}
+   
 	
 }

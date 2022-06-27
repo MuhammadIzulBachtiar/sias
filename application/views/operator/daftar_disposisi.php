@@ -1,9 +1,9 @@
 <section id="basic-examples">
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
-			<h4 class="">
-				Daftar disposisi surat
-			</h4>
+		<h3 class="">
+				<b>Daftar Disposisi Surat</b>
+			</h3>
 			
 			<hr>
 		</div>
@@ -34,43 +34,39 @@
 	<div class="row" style="margin-top: -30px;">
 		<div class="col-12">
 			<div class="card">
-				<div class="modal-header">
-					<form class="form-horizontal" method="post"  action="<?php echo site_url('operator/Disposisi');?>">
-							<button type="submit"  class="btn btn-success" ><i class="glyphicon glyphicon-search"></i> Tambah Disposisi</button>
-					</form>
-              
-                    </div>
-
 				<div class="container">
 					<div class="card-body">
-						
+						<br>
+					<form class="form-horizontal" method="post"  action="<?php echo site_url('operator/suratmasuk');?>">
+							<button type="submit"  class="btn btn-primary" ><i class="glyphicon glyphicon-search"></i> Tambah Disposisi</button>
+					</form>
 						<div class="table-responsive m-t-40" style="margin-bottom: 15px;">
-							<table cellspacing="0" class="display nowrap table table-hover table-striped table-bordered tableku" width="100%">
+							<table cellspacing="0" class="display nowrap table table-hover table-bordered tableku" width="100%">
 								<thead>
-									<tr>
+									<tr style="font-weight: bold;">
 										<th>
-											No
+										<span style="font-size: small;">No</span>
 										</th>
 										<th>
-											No Surat
+										<span style="font-size: small;">No Surat</span>
 										</th>
 										<th>
-											Tanggal Diterima
+										<span style="font-size: small;">Tanggal Surat</span>
 										</th>
 										<th>
-											Dari
+										<span style="font-size: small;">Dari</span>
 										</th>
 										<th>
-											Perihal
+										<span style="font-size: small;">Perihal</span>
 										</th>
 										<th>
-											Diteruskan
+										<span style="font-size: small;">Tanggal Diterima</span>
 										</th>
-										
-										
-
+										<th>
+										<span style="font-size: small;">Diteruskan</span>
+										</th>
 										<th class="text-center">
-											Aksi
+										<span style="font-size: small;">Aksi</span>
 										</th>
 
 									</tr>
@@ -78,20 +74,17 @@
 								<tbody id="isi">
 									<?php $no = 0; foreach ($disposisi->result() as $key): $no++;?>
 									<tr>
-										<td><?php echo $no ?></td>
-										<td><?php echo $key->no_surat ?></td>
-										<td><?php echo $key->tgl_diterima ?></td>
-										<td><?php echo $key->dari ?></td>
-										<td><?php echo $key->perihal ?></td>
-										<td><?php echo $key->diteruskan ?></td>
-										
-										
+										<td><span style="font-size: small;"><?php echo $no ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->no_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->dari ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->perihal ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_diterima ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->diteruskan ?></span></td>	
 										<td>
-											<button class="btn btn-outline-success" data-toggle="modal" data-target="#update<?php echo $key->id_disposisi ?>"><i data-toggle="tooltip" title="Update Disposisi" class="fa fa-edit"></i></button>
-											<a href="<?php echo base_url('operator/detaildisposisi/'.$key->id_disposisi) ?>" class="btn btn-outline-primary" data-toggle="tooltip" title="Detail Disposisi"><i class="fa fa-search"></i></a>
-											<a href="<?php echo base_url('operator/del_disposisi/'.$key->id_disposisi) ?>" class="btn btn-outline-danger" data-toggle="tooltip" onclick="return confirm('Hapus Disposisi?')" title="Hapus Disposisi"><i class="fa fa-trash"></i></a>
-											
-
+											<button class="btn btn-success btn-sm " style="margin:5px" data-toggle="modal" data-target="#update<?php echo $key->id_disposisi ?>">Edit</button>
+											<a href="<?php echo base_url('operator/detaildisposisi/'.$key->id_disposisi) ?>" class="btn btn-primary btn-sm " style="margin:5px">Detail</a>
+											<a href="<?php echo base_url('operator/del_disposisi/'.$key->id_disposisi) ?>" class="btn btn-danger btn-sm " style="margin:5px" onclick="return confirm('Hapus surat masuk?')">Hapus</a>
 										</td>
 									</tr>
 									<?php endforeach ?>
@@ -113,7 +106,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel1">Edit Disposisi</h4>
+				<h3 class="modal-title" id="myModalLabel1"><b>Edit Disposisi</b></h3>
 			</div>
 			<form method="post" action="<?php echo base_url('operator/update_disposisi/'.$e->id_disposisi) ?>" enctype="multipart/form-data">
 				<div class="modal-body">
@@ -123,20 +116,20 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">No Surat</label>
-										<input type="text" value="<?php echo $e->no_surat ?>" readonly="readonly" id="no_surat<?php echo $e->id_disposisi ?>" onkeyup="carinosurat2(<?php echo $e->id_disposisi ?>)" class="form-control" required="" autocomplete="off" name="no_surat">
+										<input type="text" value="<?php echo $e->no_surat ?>"  id="no_surat<?php echo $e->id_disposisi ?>" onkeyup="carinosurat2(<?php echo $e->id_disposisi ?>)" class="form-control" required="" autocomplete="off" name="no_surat">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Surat dari</label>
-										<input type="text" value="<?php echo $e->dari ?>" readonly="readonly" class="form-control" required="" autocomplete="off" name="dari">
+										<input type="text" value="<?php echo $e->dari ?>"  class="form-control" required="" autocomplete="off" name="dari">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="timesheetinput1">Tanggal Surat</label>
 								<div class="position-relative has-icon-right">
-									<input value="<?php echo $e->tgl_surat ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
+									<input value="<?php echo $e->tgl_surat ?>"  type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
 									<div class="form-control-position">
 										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
 									</div>
@@ -145,7 +138,7 @@
 							<div class="form-group">
 								<label for="timesheetinput1">Diterima Tanggal</label>
 								<div class="position-relative has-icon-right">
-									<input value="<?php echo $e->tgl_diterima ?>" readonly="readonly" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
+									<input value="<?php echo $e->tgl_diterima ?>" type="text" autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_diterima" required="">
 									<div class="form-control-position">
 										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
 									</div>
@@ -154,42 +147,30 @@
 								
 									<div class="form-group">
 										<label for="">Perihal</label>
-										<textarea type="text" style="resize: none;height: 150px;" readonly="readonly" class="form-control" required="" name="perihal"><?php echo $e->perihal ?></textarea>
+										<textarea type="text" style="resize: none;height: 150px;"  class="form-control" required="" name="perihal"><?php echo $e->perihal ?></textarea>
 									</div>	
 
 						</div>	
 
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="">Ditujukan Kepada</label>
-									<select name="tujuan" class="form-control" readonly="readonly">
-									<option value="Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II">Kepala Kantor Kesyahbandaran dan Otoritas Pelabuhan Gresik II</option>
-									</select>
-							</div>
+						<div class="form-group">
+									<label for="">Ditujukan Kepada</label>
+									<input value="<?php echo $e->ditujukan ?>" type="text" class="form-control" required="" name="ditujukan" id="ditujukan">
+								</div>
 							<div class="form-group">
 									<label for="">Sifat</label>
 										<select name="sifat" class="form-control">
-											<option value="">----</option>
+											<option value=""><?php echo $e->sifat ?></option>
 											<option <?php if($e->sifat=="SangatSegera") echo "selected"; ?> value="SangatSegera">Sangat segera</option>
 											<option <?php if($e->sifat=="Segera") echo "selected"; ?> value="Segera">Segera</option>
 											<option <?php if($e->sifat=="Rahasia") echo "selected"; ?> value="Rahasia">Rahasia</option>
-										</select>
-								</div>
-								<div class="form-group">
-									<label for="">Kepada Yth</label>
-									<select name="teruntuk" id="teruntuk" required="" readonly="readonly" class="form-control">
-											<option value="">----</option>
-											<option value="KasubagTataUsaha">Kasubag Tata Usaha</option>
-											<option value="KepalaSeksiStatusHukumdanSertifikasiKapal">Kepala Seksi Status Hukum dan Sertifikasi Kapal</option>
-											<option value="KasieKeselamatanBerlayarPenjegaandanPatrol">Kasie Keselamatan Berlayar Penjagaan dan Patrol</option>
-											<option value="KasieLALAdanUsahaKepelabuhanan">Kasie LALA dan Usaha Kepelabuhanan</option>
 										</select>
 								</div>
 
 							<div class="form-group">
 									<label for="">Diteruskan kepada</label>
 									<select name="diteruskan" class="form-control">
-										<option value="">----</option>
+										<option value=""><?php echo $e->diteruskan ?></option>
 										
 										<option <?php if($e->diteruskan=="Kepala Kantor") echo "selected"; ?> value="Kasubag Kantor">Kepala Kantor</option>
 										<option <?php if($e->diteruskan=="Bag. Umum dan Kepegawaian") echo "selected"; ?> value="Bag. Umum dan Kepegawaian">Bag. Umum dan Kepegawaian</option>
@@ -200,18 +181,7 @@
 										<option <?php if($e->diteruskan=="Bag. Sosial dan Budaya") echo "selected"; ?> value="Bag. Sosial dan Budaya">Bag. Sosial dan Budaya</option>
 									</select>
 								</div>
-							
-							<div class="form-group">
-									<label for="">Dengan Hormat Harap</label>
-									<select name="dgn_hormat" class="form-control">
-										<option value="">----</option>
-										<option <?php if($e->dgn_hormat=="Tanggapan dan Saran")echo "selected"; ?> value="Tanggapan dan Saran">Tanggapan dan saran</option>
-										<option <?php if($e->dgn_hormat=="Proses lebih lanjut") echo "selected"; ?> value="Proses lebih lanjut">Proses lebih lanjut</option>
-										<option <?php if($e->dgn_hormat=="Koordinasi dan konfirmasi") echo "selected"; ?> value="Koordinasi dan konfirmasi">Koordinasi dan konfirmasi</option>
-									</select>
-								</div>
-
-							
+														
 								<div class="form-group">
 									<label for="">Catatan</label>
 									<textarea name="catatan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->catatan ?></textarea>

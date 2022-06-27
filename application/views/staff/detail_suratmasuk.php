@@ -1,9 +1,9 @@
 <section id="basic-examples">
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
-			<h4 class="">
-				Detail Surat Masuk 
-			</h4>
+		<h3 class="">
+				<b>Detail Surat Masuk</b>
+			</h3>
 			<p>
 				Detail surat masuk dengan no surat : <?php echo $lama[0]->no_surat ?>
 			</p>
@@ -41,21 +41,17 @@
 					<div class="card-body">
 						<div class="col-md-12" style="padding-bottom: 20px;">
 							<div class="table-responsive">
-								<table class="display nowrap table  table-striped table-bordered">
+								<br>
+							<table class="display nowrap table  table-striped table-bordered">
 									<tr>
 										<th style="width: 20%">No Surat</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $lama[0]->no_surat ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Kode Surat</th>
+										<th style="width: 20%">Tanggal Catat</th>
 										<th  style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $lama[0]->kode_surat ?></span></th>
-									</tr>
-									<tr>
-										<th style="width: 20%">Pengirim</th>
-										<th  style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $lama[0]->pengirim ?></span></th>
+										<th><span style="font-weight: bold;"><?php echo $lama[0]->tgl_masuk ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Perihal</th>
@@ -63,35 +59,38 @@
 										<th><span style="font-weight: bold;"><?php echo $lama[0]->perihal ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Tanggal Masuk</th>
+										<th style="width: 20%">Tanggal Surat</th>
 										<th  style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $lama[0]->tgl_masuk ?></span></th>
+										<th><span style="font-weight: bold;"><?php echo $lama[0]->tgl_surat ?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Pengirim</th>
+										<th  style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $lama[0]->pengirim ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Ditujukan</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $lama[0]->ditujukan ?></span></th>
 									</tr>
-
 									<tr>
 										<th style="width: 20%">Kategori</th>
 										<th  style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $lama[0]->kategori ?></span></th>
 									</tr>
-
 									<tr>
 										<th style="width: 20%">Keterangan</th>
 										<th  style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $lama[0]->keterangan ?></span></th>
+										<th><span style="font-weight: bold;"><?php echo $lama[0]->Keterangan ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Scan Surat</th>
 										<th  style="width: 5%">:</th>
-										<th><a href="#" data-toggle="modal" data-target="#foto" style="font-weight: bold;"><?php echo $lama[0]->foto ?></a><a class="btn btn-outline-primary" style="margin-left: 10px;" data-toggle="tooltip" href="<?php echo base_url('upload/masuk/'.$lama[0]->foto) ?>" download title="Download"><i class="fa fa-download"></i></a></th>
+										<th><a href="#" data-toggle="modal" data-target="#foto" style="font-weight: bold;"><?php echo $lama[0]->foto ?></a><a class="btn btn-primary" style="margin-left: 10px;" data-toggle="tooltip" href="<?php echo base_url('upload/masuk/'.$lama[0]->foto) ?>" download title="Download"><i class="fa fa-download"></i></a></th>
 									</tr>
 								</table>
 								
-								<a href="<?php echo base_url('staff/suratmasuk') ?>" class="btn btn-outline-danger">Kembali</a>
+								<a href="<?php echo base_url('staff/suratmasuk') ?>" class="btn btn-danger">Kembali</a>
 								<br>
 							</div>
 						</div>

@@ -8,18 +8,26 @@ class Staff extends CI_Controller{
 		$this->load->model('Mainmodel','m');
 	}
 
+// dashboard
 	function index()
 	{
-		$data['title'] = "APS | Staff-Dashboard";
-		$this->load->view('staff/header',$data);
+		$this->load->view('staff/header');
 		$this->load->view('staff/dashboard');
 		$this->load->view('staff/footer');
 	}
 
+// surat undangan
+function undangan()
+{
+	$data['masuk'] = $this->db->query("SELECT * FROM masuk WHERE kategori='Undangan'");;
+	$this->load->view('staff/header', $data);
+	$this->load->view('staff/undangan');
+	$this->load->view('staff/footer');
+}
 
+// surat masuk
 	function suratmasuk()
 	{
-		$data['title']   = "APS | Manage Surat Masuk";
 		$data['masuk'] = $this->m->get_table('masuk');
 		$this->load->view('staff/header', $data);
 		$this->load->view('staff/surat_masuk');
@@ -42,34 +50,27 @@ class Staff extends CI_Controller{
 	function addmasuk()
 	{
 		$config['upload_path']="upload/masuk/"; //path folder file upload
-        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
         $judul = "Surat_".$this->input->post('no_surat');
         $config['file_name'] = $judul;
         
         $this->load->library('upload',$config); 
 
-        if($this->upload->do_upload("foto")){ 
-        	$data = array('upload_data' => $this->upload->data()); 
-        	$foto= $data['upload_data']['file_name']; 
 
         	$data = array(
         		'no_surat'			=> $this->input->post('no_surat'),
-        		'kode_surat'			=> $this->input->post('kode_surat'),
-        		'kategori' 			=>$this->input->post('kategori'),
+        		'kategori' 			=> $this->input->post('kategori'),
         		'pengirim'			=> $this->input->post('pengirim'),
-        		'isi'			=> $this->input->post('isi'),
+        		'perihal'			=> $this->input->post('perihal'),
         		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
-        		'ditujukan'			=> $this->input->post('disposisi'),
-        		'keterangan'			=> $this->input->post('keterangan'),
-        		'foto'			=> $foto
+				'tgl_surat'			=> $this->input->post('tgl_surat'),
+        		'ditujukan'			=> $this->input->post('ditujukan'),
+				'Keterangan'		=> $this->input->post('Keterangan'),
+        		'foto'				=> $foto
         	);
         	$this->m->insert('masuk',$data);
         	$this->session->set_flashdata('success', 'Surat masuk berhasil di tambahkan');
         	redirect($this->agent->referrer());
-        }else{
-        	$this->session->set_flashdata('error', $this->upload->display_errors());
-        	redirect($this->agent->referrer());
-        }
     }
 
     function updatemasuk($id)
@@ -78,7 +79,7 @@ class Staff extends CI_Controller{
 
     	if(!empty($_FILES['foto']['name'])){
 			$config['upload_path']="upload/masuk/"; //path folder file upload
-	        $config['allowed_types']='gif|jpg|png|jpeg'; //type file yang boleh di upload
+	        $config['allowed_types']='gif|jpg|png|jpeg|pdf|doc|docx'; //type file yang boleh di upload
 	        $judul = "Surat_".$this->input->post('no_surat');
 	        $config['file_name'] = $judul;
 
@@ -93,13 +94,13 @@ class Staff extends CI_Controller{
 
 	        	$data = array(
 	        		'no_surat'			=> $this->input->post('no_surat'),
-	        		'kode_surat'			=> $this->input->post('kode_surat'),
-	        		'kategori'			=>$this->input->post('kategori'),
+	        		'kategori' 			=> $this->input->post('kategori'),
 	        		'pengirim'			=> $this->input->post('pengirim'),
-	        		'isi'			=> $this->input->post('isi'),
+	        		'perihal'			=> $this->input->post('perihal'),
 	        		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
-	        		'ditujukan'			=> $this->input->post('disposisi'),
-	        		'keterangan'			=> $this->input->post('keterangan'),
+					'tgl_surat'			=> $this->input->post('tgl_surat'),
+	        		'ditujukan'			=> $this->input->post('ditujukan'),
+					'Keterangan'		=> $this->input->post('Keterangan'),
 	        		'foto'			=> $foto
 	        	);
 	        	$this->m->update('masuk',['id_smasuk'=>$id],$data);
@@ -113,13 +114,13 @@ class Staff extends CI_Controller{
 
 	    	$data = array(
 	    		'no_surat'			=> $this->input->post('no_surat'),
-	    		'kode_surat'			=> $this->input->post('kode_surat'),
-	    		'kategori' 			=>$this->input->kategori('kategori'),
 	    		'pengirim'			=> $this->input->post('pengirim'),
-	    		'isi'			=> $this->input->post('isi'),
+	    		'kategori' 			=> $this->input->post('kategori'),
+	    		'perihal'			=> $this->input->post('perihal'),
 	    		'tgl_masuk'			=> $this->input->post('tgl_masuk'),
-	    		'ditujukan'			=> $this->input->post('disposisi'),
-	    		'keterangan'			=> $this->input->post('keterangan'),
+				'tgl_surat'			=> $this->input->post('tgl_surat'),
+	    		'ditujukan'			=> $this->input->post('ditujukan'),
+				'Keterangan'		=> $this->input->post('Keterangan'),
 	    	);
 	    	$this->m->update('masuk',['id_smasuk'=>$id],$data);
 	    	$this->session->set_flashdata('success', 'Data berhasil di rubah');
@@ -141,7 +142,6 @@ class Staff extends CI_Controller{
 
 	function detailsuratmasuk($id)
 	{
-		$data['title']= "APS | Surat Masuk Detail";
 		$data['lama'] = $this->m->get_where('masuk', ['id_smasuk' => $id])->result();
 		$this->load->view('staff/header', $data);
 		$this->load->view('staff/detail_suratmasuk');
@@ -180,10 +180,6 @@ class Staff extends CI_Controller{
         
         $this->load->library('upload',$config); 
 
-        if($this->upload->do_upload("foto")){ 
-        	$data = array('upload_data' => $this->upload->data()); 
-        	$foto= $data['upload_data']['file_name']; 
-
         	$data = array(
         		'no_surat'			=> $this->input->post('no_surat'),
         		'kode_surat'			=> $this->input->post('kode_surat'),
@@ -198,10 +194,6 @@ class Staff extends CI_Controller{
         	$this->m->insert('keluar',$data);
         	$this->session->set_flashdata('success', 'Surat keluar berhasil di tambahkan');
         	redirect($this->agent->referrer());
-        }else{
-        	$this->session->set_flashdata('error', $this->upload->display_errors());
-        	redirect($this->agent->referrer());
-        }
     }
 
     function updatekeluar($id)
@@ -283,6 +275,7 @@ class Staff extends CI_Controller{
 		redirect($this->agent->referrer());
 	}
 
+// disposisi
 	function disposisi()
 	{
 		$data['title']   = "APS | Disposisi Surat";
@@ -312,26 +305,68 @@ class Staff extends CI_Controller{
 		$this->load->view('staff/footer');
 	}
 
-	function laporan()
+// rekap
+	function rekapitulasisurat()
 	{
-		$data['title']   = "APS | Rekapitulasi Surat";
-		$this->load->view('staff/header', $data);
-		$this->load->view('staff/laporan');
-		$this->load->view('staff/footer');	
+		$this->load->view('staff/header');
+		$this->load->view('staff/rekapitulasi_surat');
+		$this->load->view('staff/footer');
+		
 	}
 
 	function rekap()
 	{
 		$data['masuk']  = $this->db->where("tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('masuk');
-		$data['keluar']  = $this->db->where("tgl_keluar BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('keluar');
+		$data['keluar']  = $this->db->where("tgl_catat BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('keluar');
 		$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('disposisi');
-		$data['title']   = "Arsip | Rekapitulasi Surat";
+		$data['undangan']  = $this->db->where("tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' and kategori='Undangan'")->get('masuk');
+		//$data['total_undangan']  = $this->db->where("kategori='Undangan' and  tgl_masuk BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' and ' ")->get('masuk');
+		//$data['total_undangan'] = $this->db->query("SELECT COUNT(*) FROM  masuk WHERE kategori='Undangan' AND tgl_masuk BETWEEN '2022-06-1' AND '2022-06-30';");
 		$data['dari'] = $this->input->post('dari');
 		$data['sampai'] = $this->input->post('sampai');
 		$this->load->view('staff/header', $data);
 		$this->load->view('staff/rekap');
-		$this->load->view('staff/footer');	
+		$this->load->view('staff/footer');		
 	}
+
+	function cetak_exportsm(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['masuk']  = $this->db->where("tgl_masuk BETWEEN '".$dari."' and '".$sampai."' ")->get('masuk');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('staff/export_excelsm', $data);
+	}
+
+	function cetak_exportsk(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['keluar']  = $this->db->where("tgl_catat BETWEEN '".$dari."' and '".$sampai."' ")->get('keluar');
+		//$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$dari."' and '".$sampai."' ")->get('disposisi');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('staff/export_excelsk', $data);
+	}
+
+	function cetak_exportds(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$this->input->post('dari')."' and '".$this->input->post('sampai')."' ")->get('disposisi');
+		//$data['disposisi']  = $this->db->where("tgl_diterima BETWEEN '".$dari."' and '".$sampai."' ")->get('disposisi');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('staff/export_excelds', $data);
+	}
+
+	function cetak_export_undangan(){
+		$dari = $this->uri->segment(3);
+		$sampai = $this->uri->segment(4);
+		$data['undangan']  = $this->db->where("tgl_masuk BETWEEN '".$dari."' and '".$sampai."' and kategori='Undangan'")->get('masuk');
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$this->load->view('staff/export_excel_undangan', $data);
+	}
+
 
 	function buatsurat()
 	{
@@ -342,14 +377,6 @@ class Staff extends CI_Controller{
 		$this->load->view('staff/footer');		
 	}
 
-		function undangan()
-	{
-		$data['title']   = "APS | Buat Surat";
-		$data['sub'] = "Surat";
-		$this->load->view('staff/header', $data);
-		$this->load->view('staff/undangan');
-		$this->load->view('staff/footer');		
-	}
 
 	function permohonan() 
 	{

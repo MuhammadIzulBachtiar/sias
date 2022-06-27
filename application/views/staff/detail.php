@@ -1,9 +1,12 @@
 <section id="basic-examples">
 	<div class="row">
 		<div class="col-xs-12 mt-1 mb-3">
-			<h4 class="">
-				Detail Disposisi Surat : <?php echo $list->no_surat ?>
-			</h4>
+			<h3 class="">
+				Detail Disposisi Surat
+			</h3>
+			<p>
+				Detail disposisi dengan no surat : <?php echo $list->no_surat ?>
+			</p>
 			
 			<hr>
 		</div>
@@ -39,7 +42,7 @@
 					<div class="card-body">
 						<div class="col-md-12" style="padding-bottom: 20px;">
 							<div class="table-responsive">
-								<table class="display nowrap table  table-striped table-bordered">
+							<table class="display nowrap table  table-striped table-bordered">
 									<tr>
 										<th style="width: 20%">No Surat</th>
 										<th  style="width: 5%">:</th>
@@ -51,9 +54,14 @@
 										<th><span style="font-weight: bold;"><?php echo $list->dari ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Tanggal Surat</th>
-										<th  style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat ?></span></th>
+										<th style="width: 20%">Ditujukan kepada</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->ditujukan?></span></th>
+									</tr>
+									<tr>
+										<th style="width: 20%">Tanggal surat</th>
+										<th style="width: 5%">:</th>
+										<th><span style="font-weight: bold;"><?php echo $list->tgl_surat?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Diterima tanggal</th>
@@ -71,35 +79,23 @@
 										<th><span style="font-weight: bold;"><?php echo $list->sifat ?></span></th>
 									</tr>
 									<tr>
-
-										<th style="width: 20%">Dengan hormat harap</th>
+										<th style="width: 20%">Diteruskan Kepada</th>
 										<th style="width: 5%">:</th>
-										<th><span style="font-weight: bold;"><?php echo $list->dgn_hormat ?></span></th>
+										<th><span style="font-weight: bold;"><?php echo $list->diteruskan ?></span></th>
 									</tr>
 									<tr>
 										<th style="width: 20%">Catatan</th>
-										<th style="width: 5%"></th>
+										<th style="width: 5%">:</th>
 										<th><span style="font-weight: bold;"><?php echo $list->catatan ?></span></th>
 									</tr>
 									<tr>
-										<th style="width: 20%">Tanggapan</th>
-										<th style="width: 5%"></th>
-										<th><span style="font-weight: bold;"><select name="tanggapan" class="form-control">
-												<option value="">----</option>
-												<option value="Disposisi akan segera diproses">Disposisi akan segera diproses</option>
-												<option value="Perintah Disposisi selesai">Perintah Disposisi selesai</option>
-											</select></span></th>
-								
-									</tr>
+										
 								</table>
 								
 								<br> 
 								<div class="form-group">
-									<a href="<?php echo base_url('staff/update_disposisi') ?>" class="btn btn-outline-danger">Kirim</a>
-
-									
-									<button class="btn btn-outline-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
-									<a href="<?php echo base_url('staff/disposisi') ?>" class="btn btn-outline-danger">Kembali</a>
+									<button class="btn btn-success" onclick="disposisi()" type="button"><i class="fa fa-print"></i> Print Disposisi Surat</button>
+									<a href="<?php echo base_url('staff/disposisi') ?>" class="btn btn-danger">Kembali</a>
 								<br>
 								</div>
 							</div>
@@ -116,17 +112,14 @@
 			<div class="row">
 				<table class="table">
 					<tr>
-						<td><img src="<?php echo base_url('assets/logo2.png') ?>" width="100" alt=""></td>
 						<td>
 							<center>
-								<h3><b>PEMERINTAH PERHUBUNGAN LAUT<br>DIREKTORAT JENDRAL PERHUBUNGAN LAUT</b></h3>
-								<h3><b>LEMBAR DISPOSISI<br>KEPALA KANTOR KESYAHBANDRAN DAN<br>OTORITAS PELABUHAN KELAS II GRESIK</b></h3>
+								<h3>PEMERINTAH KABUPATEN PEKALONGAN<br><b>BADAN PENGELOLAAN KEUANGAN DAERAH (BPKD)</b></h3>
 							</center>
 						</td>
 					</tr>
 				</table>
 				<div class="col-md-12">
-					<hr>
 					<div class="col-md-12">
 						<center>
 							<table style="width: 100%" class="table table-striped">
@@ -135,49 +128,58 @@
 								</tr>
 							</table>
 							<hr>
-							<table class="table" style="width: 100%; border: 1px solid gray;padding: 10px;">
+							<table style="width: 100%; border: 1px solid gray; padding: 10px;">
 								<tr>
-									<td style="width: 30%">NO Surat</td>
-									<td><?php echo $list->no_surat ?></td>
+									<td style="width: 20%">Surat Dari</td>
+									<td style="width: 30%">: <?php echo $list->dari ?></td>
+									<td style="width: 20%">Diterima Tanggal</td>
+									<td style="width: 30%">: <?php echo $list->tgl_diterima ?></td>
 								</tr>
 								<tr>
-									<td style="width: 30%">Surat Dari</td>
-									<td><?php echo $list->dari ?></td>
+									<td style="width: 20%">No Surat</td>
+									<td style="width: 30%">: <?php echo $list->no_surat ?></td>
+									<td style="width: 20%">No Agenda</td>
+									<td style="width: 30%">:</td>
 								</tr>
 								<tr>
-									<td style="width: 30%">Tanggal Surat</td>
-									<td><?php echo $list->tgl_surat ?></td>
-								</tr>
-								<tr>
-									<td style="width: 30%">Diterima Tanggal</td>
-									<td><?php echo $list->tgl_diterima ?></td>
-								</tr>
-								<tr>
-									<td style="width: 30%">Sifat</td>
-									<td><?php echo $list->sifat ?></td>
-								</tr>
-
-								<tr>
-									<td style="width: 30%">Perilhal</td>
-									<td><?php echo $list->perihal ?></td>
-								</tr>
-								<tr>
-									<td style="width: 30%">Diteruskan Kepada</td>
-									<td><?php echo $list->diteruskan ?></td>
-								</tr>
-								<tr>
-									<td style="width: 30%">Dengan Hormat Harap</td>
-									<td><?php echo $list->dgn_hormat ?></td>
+									<td style="width: 20%">Tanggal Surat</td>
+									<td style="width: 30%">: <?php echo $list->tgl_surat ?></td>
+									<td style="width: 20%">Sifat</td>
+									<td style="width: 30%">: <?php echo $list->sifat ?></td>
 								</tr>
 							</table>
+							<table  style="width: 100%; height: 10%; border: 1px solid gray; padding: 10px;">								
+								<tr>
+									<td align=left valign=top style="width: 20%">Perilhal</td>
+									<td align=left valign=top>: <?php echo $list->perihal ?></td>
+								</tr>
+							</table>
+							<table  style="width: 100%; border: 1px solid gray; padding: 10px;">								
+								<tr>
+									<td style="width: 20%">Diteruskan Kepada</td>
+									<td>: <?php echo $list->diteruskan ?></td>
+								</tr>
+							</table>
+							<table  style="width: 100%; height: 10%; border: 1px solid gray; padding: 10px;">
+							<tr>								
+								<td align=left valign=top style="width: 50%">Catatan      :</td>
+								<td align=right valign=top><b>Kepala Kantor BPKD</b></td>
+							</tr>
+							<tr>
+								<td align=left valign=top><?php echo $list->catatan ?></td>
+								<td align=right valign=top>
+										<br><br><br><br><br>
+										<b>(.....................................)</b>
+								</td>
+							</table>
 						</center>
-						<br>
+						<!-- <br>
 						<br>
 						<div style="bottom: 0px; position: absolute;float: right!important;right: 0">
 							<b class="pull-right" style="margin-left: 50px;">Camat Dayeuhkolot</b>
 							<br><br><br><br><br><br>
 							<b class="pull-right" style="letter-spacing: 2px;">(.....................................)</b>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

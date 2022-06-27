@@ -1,189 +1,264 @@
- <section id="basic-examples">
- 	<div class="row">
- 		<div class="col-xs-12 mt-1 mb-3">
- 			<h4 class="">
- 				Buat Surat <?php echo $sub ?> 
- 			</h4>
- 			<p>
- 				Buat surat <?php echo $sub ?> dan print disini
- 			</p>
- 			<hr>
- 		</div>
- 		<div class="col-xs-12">
- 			<?php 
- 			if ($this->session->flashdata('error')!==null) {
- 				?>
- 				<div class="alert alert-danger">
- 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
- 					<?php echo $this->session->flashdata('error') ?>
- 				</div>
- 				<?php
- 			}
+<section id="basic-examples">
+	<div class="row">
+		<div class="col-xs-12 mt-1 mb-3">
+			<h3 class="">
+				<b>Daftar Undangan</b>
+			</h3>
+			
+			<hr>
+		</div>
+		<div class="col-xs-12">
+			<?php 
+			if ($this->session->flashdata('error')!==null) {
+				?>
+				<div class="alert alert-danger">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<?php echo $this->session->flashdata('error') ?>
+				</div>
+				<?php
+			}
 
- 			if ($this->session->flashdata('success')!==null) {
- 				?>
- 				<div class="alert alert-success">
- 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
- 					<?php echo $this->session->flashdata('success') ?>
- 				</div>
- 				<?php
- 			}
- 			?>
- 		</div>
- 	</div>
- 	<br>
- 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css') ?>">
- 	<form action="<?php echo site_url('Staff/cetak_surat');?>" method="POST">
- 		
- 	<div class="row" style="margin-top: -30px;">
- 		<div class="col-md-12">
- 			<div class="form-group">
- 				<button class="btn btn-outline-primary" type="submit"><i class="fa fa-print"></i> Buat Surat</button>
- 			</div>
- 		</div>
- 		<div class="col-md-12 " id="print" style="margin-bottom: 50px;">
- 			<div class="card">
- 				<div class="card-header">
- 					
- 				</div>
- 				<div class="card-body card-block">
- 					<ul class="nav nav-tabs customtab" role="tablist">
- 						<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home2" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Data</span></a> </li>
- 						<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile2" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Preview</span></a> </li>
- 					</ul>
- 					<!-- Tab panes -->
- 					<div class="tab-content">
- 						<div class="tab-pane active" id="home2" role="tabpanel">
- 							<div class="p-20">
- 								<div class="row">
- 									<div class="col-md-6">
- 										<div class="form-group">
- 											<label for="">Tempat tanggal</label>
- 											<input type="text" name="tempat_tanggal" class="form-control" required="" onkeyup="tempat()" id="txt_tempat">
- 											<input type="hidden" name="kategori" class="form-control" required="" value="<?php echo $this->uri->segment(2);?>" id="txt_tempat">
- 										</div>
- 										<div class="form-group">
- 											<label for="">Kepada</label>
- 											<textarea name="kepada" id="txt_kepada" onkeyup="kepada()" class="form-control"></textarea>
- 										</div>
- 										<div class="form-group">
- 											<label for="">Nomor </label>
- 											<input type="text" name="nomor" class="form-control" required="" onkeyup="nomor()" id="txt_nomor">
- 										</div>
- 										<div class="form-group">
- 											<label for="">Sifat </label>
- 											<input type="text" name="sifat" class="form-control" required="" onkeyup="sifat()" id="txt_sifat">
- 										</div>
- 										<div class="form-group">
- 											<label for="">Lampiran </label>
- 											<input type="text" name="lampiran" class="form-control" required="" onkeyup="lampiran()" id="txt_lampiran">
- 										</div>
- 										<div class="form-group">
- 											<label for="">Perihal </label>
- 											<input type="text" name="perihal" class="form-control" required="" onkeyup="perihal()" id="txt_perihal">
- 										</div>
- 									</div>
- 									<div class="col-md-6">
- 										<div class="form-group">
- 											<label for="">Isi Surat</label>
- 											<textarea name="isi_surat" id="txt_isi" class="form-control" onkeyup="isi()" style="height: 200px"></textarea>
- 										</div>
- 									</div>
- 									<div class="col-md-6">
- 										<div class="form-group">
- 											<label for="">Tembusan</label>
- 											<textarea name="tembusan" id="txt_tembusan" class="form-control" onkeyup="tembusan()" style="height: 200px"></textarea>
- 										</div>
- 									</div>
- 								</div>
- 							</div>
- 						</div>
+			if ($this->session->flashdata('success')!==null) {
+				?>
+				<div class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<?php echo $this->session->flashdata('success') ?>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+	</div>
 
- 	</form>
- 						<div class="tab-pane  p-20" id="profile2" role="tabpanel" >
- 							<div class="col-md-12 p-4" id="print" style="padding-top: 20px; padding-right: 50px; padding-left: 50px; box-shadow: 1px 1px 10px gray;min-height: 1250px;">
- 								<br>
- 								<ul class="media-list row" style="border: 0px!important;margin-left: -50px;margin-right: -50px;">
- 									<li class="media" style="border: 0px!important;">
- 										<div class="media-left">
- 											<a href="#">
- 												<img class="media-object width-170" src="<?php echo base_url('assets/logoprint.png') ?>" alt="Generic placeholder image"  style="width: 170px;">
- 											</a>
- 										</div>
- 										<div class="media-body media-search">
- 											<center>
- 												<h1 style="font-size: 2.2em;letter-spacing: 3px;">PEMERINTAH KABUPATEN BANDUNG</h1>
- 												<h1 style="font-size: 2.2em;letter-spacing: 3px; margin-top: -10px;">KECAMATAN DAYEUHKOLOT</h1>
- 												<span style="font-size: 1.3em;letter-spacing: 1.4px">Alamat : Jl. Raya Dayeuhkolot No. 409 TELP/FAX 022-5223238</span><br>
- 												<span style="font-size: 1.3em;letter-spacing: 1.4px"><i>email : kec_dayeuhkolot@yahoo.co.id Bandung 40257</i></span>
- 											</center>
- 										</div>
- 									</li>
- 								</ul>
- 								<hr>
- 								<span style="float: right;" id="tempat"></span><br>
- 								<span style="float: right;margin-right: 50px;">Kepada:</span><br>
- 								<span style="float: right;margin-right: 0px; width: 200px;" id="kepada"></span>
- 								<p style="margin-top: -10px!important;">Nomor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span id="nomor"></span></p>
- 								<p style="margin-top: -10px!important;">Sifat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span id="sifat"></span></p>
- 								<p style="margin-top: -10px!important;">Lampiran &nbsp;&nbsp;&nbsp;&nbsp;: <span id="lampiran"></span></p>
- 								<p style="margin-top: -10px!important;">Perihal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span ><u><b id="perihal"></b></u></span></p>
- 								<p style="margin-left: 85px;" id="isi"></p>
- 								<p style="float: right;  margin-top:600px; right: 60px;">CAMAT DAYEUHKOLOT</p>
- 								<p style="float: right; margin-top:690px; margin-right: -160px; text-align: center;"><u><b>Drs. YIYIN SODIKIN,M.Si</b></u><br>Pembina Tingkat 1 <br> NIP : 19610504 198209 1001</p>
- 								<p style="margin-top: 780px;" id="tembusan"></p>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- </section>
- <script>
+	<br>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css') ?>">
+	<div class="row" style="margin-top: -30px;">
+		<div class="col-12">
+			<div class="card">
+				<div class="container">
+					<div class="card-body">
+						<br>
+						<div class="table-responsive m-t-40" style="margin-bottom: 15px;">
+							<table cellspacing="0" class="display nowrap table table-hover table-bordered tableku" style="width: 100%">
+								<thead>
+									<tr style="font-weight: bold;">
+										<th width="50px">
+										<span style="font-size: small;">No</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Tanggal Catat</span>
+										</th>
+										<th>
+										<span style="font-size: small;">No Surat</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Tanggal Surat</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Perihal</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Pengirim</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Ditujukan</span>
+										</th>
+										<th>
+										<span style="font-size: small;">Keterangan</span>
+										</th>
+										<th class="text-center">
+										<span style="font-size: small;">Aksi</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody id="isi">
+									<?php $no = 0; foreach ($masuk->result() as $key): $no++;?>
+									<tr>
+									<td>
+										<span style="font-size: small;"><?php echo $no ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_masuk ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->no_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->tgl_surat ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->perihal ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->pengirim ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->ditujukan ?></span></td>
+										<td><span style="font-size: small;"><?php echo $key->Keterangan ?></span></td>
+										<td>
+										<button class="btn btn-success btn-sm " style="margin:5px" data-toggle="modal" data-target="#update<?php echo $key->id_smasuk ?>">Edit</button>
+											<a href="<?php echo base_url('staff/detailsuratmasuk/'.$key->id_smasuk) ?>" class="btn btn-primary btn-sm " style="margin:5px">Detail</a>
+											<a href="<?php echo base_url('staff/delmasuk/'.$key->id_smasuk) ?>" class="btn btn-danger btn-sm " style="margin:5px" onclick="return confirm('Hapus surat masuk?')">Hapus</a>		
+										</td>
+									</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
 
- 	function kepada() {
- 		$("#kepada").html($("#txt_kepada").val().replace(/\n/g, '<br/>'));
- 	}
+<!-- edit surat undangan -->
+<?php foreach ($masuk->result() as $e): ?>
+<div class="modal fade text-xs-left" id="update<?php echo $e->id_smasuk ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel1">Update Surat Masuk</h4>
+			</div>
+			<form method="post" action="<?php echo base_url('staff/updatemasuk/'.$e->id_smasuk) ?>" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="">No Surat</label>
+										<input type="text" value="<?php echo $e->no_surat ?>" id="no_surat<?php echo $e->id_smasuk ?>" onkeyup="carinosurat2(<?php echo $e->id_smasuk ?>)" class="form-control" required="" autocomplete="off" name="no_surat">
+										<small id="msgsurat<?php echo $e->id_smasuk ?>" class="btn-danger hide">No surat telah digunakan sebelumnya</small>
+									</div>
+								</div>
+								<div class="col-md-6">
+								<div class="form-group">
+									<label for="">Kategori</label>
+									<select name="kategori" class="form-control">
+										<option value="">----</option>
+										<option <?php if($e->kategori=="Undangan") echo "selected"; ?> value="Undangan">Undangan</option>
+										<option <?php if($e->kategori=="Permohonan") echo "selected"; ?> value="Permohonan">Permohonan</option>
+										<option <?php if($e->kategori=="Laporan") echo "selected"; ?> value="Laporan">Laporan</option>
+										<option <?php if($e->kategori=="Pemberitahuan") echo "selected"; ?> value="Pemberitahuan">Pemberitahuan</option>
+										<option <?php if($e->kategori=="Himbauan") echo "selected"; ?> value="Himbauan">Himbauan</option>
+									</select>
+								</div>
+								</div>
+							</div>
 
- 	function isi() {
- 		$("#isi").html($("#txt_isi").val().replace(/\n/g, '<br/>'));
- 	}
+							<div class="row">
+							<div class="col-md-6">
+							<div class="form-group">
+								<label for="timesheetinput1">Tanggal Catat</label>
+								<div class="position-relative has-icon-right">
+									<input value="<?php echo $e->tgl_masuk?>" type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_masuk" required="">
+									<div class="form-control-position">
+										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+									</div>
+								</div>
+							</div>
+							</div>
 
- 	function tembusan() {
- 		$("#tembusan").html($("#txt_tembusan").val().replace(/\n/g, '<br/>'));
- 	}
+							<div class="col-md-6">
+							<div class="form-group">
+								<label for="timesheetinput1">Tanggal Surat</label>
+								<div class="position-relative has-icon-right">
+									<input value="<?php echo $e->tgl_surat ?>" type="text"autocomplete="off" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="tgl_surat" required="">
+									<div class="form-control-position">
+										<i class="icon-android-calendar" style="font-size: 2em;margin-top: 5px;position: absolute;right: 0px"></i>
+									</div>
+								</div>
+							</div>
+							</div>
+							</div>
+							
+								
+									<div class="form-group">
+										<label for="">Pengirim</label>
+										<input value="<?php echo $e->pengirim ?>" type="text" class="form-control" autocomplete="off" required="" name="pengirim">
+									</div>	
+								
+								
+								<div class="form-group">
+									<label for="">Ditujukan</label>
+									<select name="ditujukan" class="form-control">
+										<option value="">----</option>
+										<option <?php if($e->ditujukan=="Kepala BPKD") echo "selected"; ?> value="Kepala BPKD">Kepala BPKD</option>
+										<option <?php if($e->ditujukan=="Sekretaris") echo "selected"; ?> value="Sekretaris">Sekretaris</option>
+										<option <?php if($e->ditujukan=="Kabid Perencanaan & Penetapan") echo "selected"; ?> value="Kabid Perencanaan & Penetapan">Kabid Perencanaan & Penetapan</option>
+										<option <?php if($e->ditujukan=="Kabid Pelayanan & Penagihan") echo "selected"; ?> value="Kabid Pelayanan & Penagihan">Kabid Pelayanan & Penagihan</option>
+										<option <?php if($e->ditujukan=="Kabid Anggaran & Perbendaharaan") echo "selected"; ?> value="Kabid Anggaran & Perbendaharaan">Kabid Anggaran & Perbendaharaan</option>
+										<option <?php if($e->ditujukan=="Kabid Akutansi & Pembukuan") echo "selected"; ?> value="Kabid Akutansi & Pembukuan">Kabid Akutansi & Pembukuan</option>
+										<option <?php if($e->ditujukan=="Kabid Aset") echo "selected"; ?> value="Kabid Aset">Kabid Aset</option>
+										
+									</select>
+								</div>
+								<div class="form-group">
+								<label for="">Perihal</label>
+								<textarea name="perihal" required="" id="" class="form-control"><?php echo $e->perihal ?></textarea>
+							</div>
 
- 	function tempat() {
- 		$("#tempat").html($("#txt_tempat").val());
- 	}
- 	function nomor() {
- 		$("#nomor").html($("#txt_nomor").val());
- 	}
- 	function sifat() {
- 		$("#sifat").html($("#txt_sifat").val());
- 	}
- 	function lampiran() {
- 		$("#lampiran").html($("#txt_lampiran").val());
- 	}
- 	function perihal() {
- 		$("#perihal").html($("#txt_perihal").val());
- 	}
+						</div>
+						<div class="col-md-6">
 
- 	function printsurat() {
+							<div class="form-group">
+								<label for="">Keterangan</label>
+								<textarea name="Keterangan" required="" id="" style="resize: none;height: 150px;" class="form-control"><?php echo $e->Keterangan ?></textarea>
+							</div>
+							
+							<div class="form-group">
+								<label for="">Scan Surat</label>
+								<input type="file" data-default-file="<?php echo base_url('upload/masuk/'.$e->foto) ?>" class="dropify" name="foto">
+								<label><h6>type file : gif, jpg, png, jpeg, pdf, doc, docx</h6></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn grey btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" id="btnsubmit<?php echo $e->id_smasuk ?>" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endforeach ?>
 
- 		var divToPrint=document.getElementById('print');
+<script>
+	function carinosurat() {
+		if ($("#no_surat").val()!=='') {
+			$.ajax({
+				type: "GET",
+				url: "<?php echo base_url('kasubag/carinosurat/') ?>"+$("#no_surat").val(),
+				success: function (data) {
+					var dataa = data;
+					if (dataa==1) {
+						$("#btnsubmit").prop('disabled',true);
+						$("#msgsurat").removeClass('hide');
+					}else{
+						$("#btnsubmit").prop('disabled',false);
+						$("#msgsurat").addClass('hide');
+					}
+				}
+			}); 
+		}else{
+			$("#msgsurat").addClass('hide');
+			$("#btnsubmit").prop('disabled',false);
+		}
+	}
 
- 		var newWin=window.open('','Print-Window');
- 		var WinPrint = window.open('', '', 'left=0,top=0,width=300,height=400,toolbar=1,scrollbars=1,status=0');
+	function carinosurat2(id) {
+		if ($("#no_surat"+id.toString()).val()!=='') {
+			$.ajax({
+				type: "GET",
+				url: "<?php echo base_url('kasubag/carinosurat/') ?>"+$("#no_surat"+id.toString()).val(),
+				success: function (data) {
+					var dataa = data;
+					if (dataa==1) {
+						$("#btnsubmit"+id.toString()).prop('disabled',true);
+						$("#msgsurat"+id.toString()).removeClass('hide');
+					}else{
+						$("#btnsubmit"+id.toString()).prop('disabled',false);
+						$("#msgsurat"+id.toString()).addClass('hide');
+					}
+				}
+			}); 
+		}else{
+			$("#msgsurat"+id_smasuk.toString()).addClass('hide');
+			$("#btnsubmit"+id_smasuk.toString()).prop('disabled',false);
+		}
+	}
 
-
- 		newWin.document.open();
-
- 		newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
-
- 		newWin.document.close();
-
- 		setTimeout(function(){newWin.close();},10);
- 	}
- </script>
+</script>
